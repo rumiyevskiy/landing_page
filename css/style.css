@@ -199,7 +199,6 @@ body.lock {
   left: 0%;
   bottom: 0%;
   top: 0%;
-  cursor: pointer;
 }
 .popup__form .rect::after {
   content: "";
@@ -216,12 +215,6 @@ body.lock {
 .popup__form .privacy-policy {
   color: var(--grey, #bbbbbb);
   text-align: left;
-  font-family: var(--hint-font-family, "Manrope-Regular", sans-serif);
-  font-size: var(--hint-font-size, 12px);
-  line-height: var(--hint-line-height, 20px);
-  font-weight: var(--hint-font-weight, 400);
-  position: relative;
-  flex: 1;
   cursor: pointer;
 }
 .popup__form .button2 {

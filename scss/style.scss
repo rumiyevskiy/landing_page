@@ -232,7 +232,7 @@ body {
     bottom: 0%;
     top: 0%;
   
-    cursor: pointer;
+    // cursor: pointer;
   }
   
   .rect::after {
@@ -252,12 +252,12 @@ body {
   .privacy-policy {
     color: var(--grey, #bbbbbb);
     text-align: left;
-    font-family: var(--hint-font-family, "Manrope-Regular", sans-serif);
-    font-size: var(--hint-font-size, 12px);
-    line-height: var(--hint-line-height, 20px);
-    font-weight: var(--hint-font-weight, 400);
-    position: relative;
-    flex: 1;
+    // font-family: var(--hint-font-family, "Manrope-Regular", sans-serif);
+    // font-size: var(--hint-font-size, 12px);
+    // line-height: var(--hint-line-height, 20px);
+    // font-weight: var(--hint-font-weight, 400);
+    // position: relative;
+    // flex: 1;
   
     cursor: pointer;
   }
