@@ -476,12 +476,13 @@ body.lock {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 10px 80px;
 }
 @media (max-width: 767px) {
   .footer {
     flex-direction: column;
     align-items: center;
+    padding: 10px 40px;
   }
 }
 @media (max-width: 767px) {
