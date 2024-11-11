@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     
-    const selectedLanguage = localStorage.getItem("selectedLanguage") || "uk";
+    const selectedLanguage = localStorage.getItem("selectedLanguage") || "en";
     // const selectedLanguage = localStorage.getItem("selectedLanguage");
 
     let selLangvar;
@@ -341,4 +341,24 @@ document.addEventListener("DOMContentLoaded", function () {
     // };
 
 
+    function setGoogleTranslateLanguage(lang) {
+      var select = document.querySelector("#google_translate_element select");
+      if (select) {
+        for (var i = 0; i < select.options.length; i++) {
+          if (select.options[i].value.indexOf(lang) > -1) {
+            select.selectedIndex = i;
+            select.dispatchEvent(new Event("change"));
+            break;
+          }
+        }
+      }
+    }
+  
+    window.onload = function() {
+      var userLang = navigator.language || navigator.userLanguage;
+      var langCode = userLang.substring(0, 2); // Беремо лише перші дві літери коду мови
+      setGoogleTranslateLanguage(langCode);
+    };
+
+  
 });

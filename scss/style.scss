@@ -27,15 +27,32 @@ $maxWidth: 1440;
 
 body {
     color: #ffffff;
+    background: url("../img/imgs/auto_electro_2.jpg") center / cover  no-repeat;
 
     &.lock {
         overflow: hidden;
     }
+
+    @media (max-width: 767px) {
+        background: url("../img/imgs/auto_electro_2.jpg") 30%/ cover   no-repeat;
+    }
+
 }
 
 .hidden {
     display: none;
 }
+
+#google_translate_element {
+    display: none;
+    // display: inline-block;
+    width: 220px;
+    height: 25px;
+    overflow: hidden;
+    background-color: grey;
+}
+
+
   
 .return__btn {
     background: var(--black2, #323232);
@@ -59,7 +76,7 @@ body {
         transform: rotate(-100grad);
       }
 
-      @media (max-width: 767px) {
+    @media (max-width: 767px) {
         right: 10px;
         bottom: 10px;
         opacity: 0.7;
@@ -72,7 +89,7 @@ body {
     overflow: hidden;
     min-height: 100%;
     // padding: 10px;
-    background-color: #808080;
+    background-color: #808080d7;
 }
 
 .popup {
@@ -280,6 +297,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px 0 20px;
+    gap: 10px;
 
         
     .buttons {
@@ -507,8 +525,9 @@ body {
 .header-action__btn {
     padding: 0.8rem 2rem;
     font-size: 1rem;
-    background-color: #715eb4;
-    color: #aaf710;
+    background-color: rgb(59, 56, 56);
+    border: 1px solid #ffffff;
+    color: #ffffff;
     text-decoration: none;
     border-radius: 5px;
     transition: background-color 0.3s ease;
@@ -569,7 +588,7 @@ body {
 }
 
 .about {
-
+    position: relative;
 }
 
 
@@ -595,9 +614,9 @@ body {
 }
 
 .body-main-block__slider {
-    height: 70vh;
+    height: 80vh;
     margin: 20px;
-    position: relative;
+    // position: relative;
 }
 
 .slider-main-block__slide {
@@ -605,12 +624,36 @@ body {
 }
 
 .slider-main-block__slide img {
-    display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center center;
+    // display: block;
+    // width: 100%;
+    // height: 100%;
+    // object-fit: cover;
+    // object-position: center center;
+
+    // position: relative;
+    // top: 0;
+    // left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
+
+.slider-main-block__arrows {
+    position: absolute;
+    bottom: 60px;
+
+    width: 100%;
+}
+
+.swiper-button-prev::after,.swiper-button-next::after {
+    color: #ffffff;
+    background-color:#323232;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid #ffffff;
+    --swiper-navigation-size: 20px;
+}
+
 
 
 
@@ -626,6 +669,8 @@ body {
 .why-choose-us__cards {
     display: flex;
     text-align: center;
+    flex-wrap: wrap;
+    justify-content: center;
 
     .why-choose-us__item {
         flex: 0 0 33.333%;
@@ -633,28 +678,49 @@ body {
    
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
         gap: 10px;    
         
-        // background: url('../img/circle.svg') center / contain no-repeat;
-
         .item__img {
-            flex: 0 0 50%;
+            // flex: 0 0 50%;
             display: flex;
             justify-content: center;
+            align-items: center;
 
-            min-height: 200px;
-            min-width: 200px;
+            height: 200px;
+            width: 200px;
 
             padding: 40px;
 
-            background: url('../img/circle.svg') center / contain no-repeat;
+            position: relative;
+
+            // background: url('../img/circle.svg') center / 100% 100% no-repeat;
 
             img {
                 // width: 100%;
                 // height: 100%;
                 object-fit: contain;
+            }
+
+            img:last-child {
+                object-fit: cover;
+            }
+
+            .img__bacground {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                position: absolute;
+                top: 0;
+                left: 7px;
+                transform: scale(1.2);
+            }
+        }
+
+        &:last-child {
+            img:not([class*="img__bacground"]) {
+                transform: scale(1.6);
             }
         }
     }
@@ -664,7 +730,7 @@ body {
     }
 
     .item__text {
-        flex: 0 1 50%;
+        // flex: 1 1 50%;
         display: flex;
         align-items: center;
     }

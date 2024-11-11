@@ -16,13 +16,27 @@
 
 body {
   color: #ffffff;
+  background: url("../img/imgs/auto_electro_2.jpg") center/cover no-repeat;
 }
 body.lock {
   overflow: hidden;
 }
+@media (max-width: 767px) {
+  body {
+    background: url("../img/imgs/auto_electro_2.jpg") 30%/cover no-repeat;
+  }
+}
 
 .hidden {
   display: none;
+}
+
+#google_translate_element {
+  display: none;
+  width: 220px;
+  height: 25px;
+  overflow: hidden;
+  background-color: grey;
 }
 
 .return__btn {
@@ -57,7 +71,7 @@ body.lock {
 .wrapper {
   overflow: hidden;
   min-height: 100%;
-  background-color: #808080;
+  background-color: rgba(128, 128, 128, 0.8431372549);
 }
 
 .popup {
@@ -240,6 +254,7 @@ body.lock {
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px 0 20px;
+  gap: 10px;
 }
 .header .buttons {
   display: flex;
@@ -433,8 +448,9 @@ body.lock {
 .header-action__btn {
   padding: 0.8rem 2rem;
   font-size: 1rem;
-  background-color: #715eb4;
-  color: #aaf710;
+  background-color: rgb(59, 56, 56);
+  border: 1px solid #ffffff;
+  color: #ffffff;
   text-decoration: none;
   border-radius: 5px;
   transition: background-color 0.3s ease;
@@ -486,6 +502,10 @@ body.lock {
   margin: 0 auto;
 }
 
+.about {
+  position: relative;
+}
+
 .about-title {
   text-align: center;
   font-size: calc(30px + 25 * (100vw - 320px) / 1120);
@@ -507,19 +527,30 @@ body.lock {
 }
 
 .body-main-block__slider {
-  height: 70vh;
+  height: 80vh;
   margin: 20px;
-  position: relative;
 }
 
 .slider-main-block__slide img {
-  display: block;
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-  -o-object-position: center center;
-     object-position: center center;
+}
+
+.slider-main-block__arrows {
+  position: absolute;
+  bottom: 60px;
+  width: 100%;
+}
+
+.swiper-button-prev::after, .swiper-button-next::after {
+  color: #ffffff;
+  background-color: #323232;
+  padding: 5px;
+  border-radius: 10px;
+  border: 1px solid #ffffff;
+  --swiper-navigation-size: 20px;
 }
 
 .about__action {
@@ -531,28 +562,47 @@ body.lock {
 .why-choose-us__cards {
   display: flex;
   text-align: center;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .why-choose-us__cards .why-choose-us__item {
   flex: 0 0 33.333%;
   padding: 10px 15px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   gap: 10px;
 }
 .why-choose-us__cards .why-choose-us__item .item__img {
-  flex: 0 0 50%;
   display: flex;
   justify-content: center;
-  min-height: 200px;
-  min-width: 200px;
+  align-items: center;
+  height: 200px;
+  width: 200px;
   padding: 40px;
-  background: url("../img/circle.svg") center/contain no-repeat;
+  position: relative;
 }
 .why-choose-us__cards .why-choose-us__item .item__img img {
   -o-object-fit: contain;
      object-fit: contain;
+}
+.why-choose-us__cards .why-choose-us__item .item__img img:last-child {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.why-choose-us__cards .why-choose-us__item .item__img .img__bacground {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  position: absolute;
+  top: 0;
+  left: 7px;
+  transform: scale(1.2);
+}
+.why-choose-us__cards .why-choose-us__item:last-child img:not([class*=img__bacground]) {
+  transform: scale(1.6);
 }
 @media (max-width: 767px) {
   .why-choose-us__cards {
@@ -560,7 +610,6 @@ body.lock {
   }
 }
 .why-choose-us__cards .item__text {
-  flex: 0 1 50%;
   display: flex;
   align-items: center;
 }

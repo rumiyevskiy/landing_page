@@ -8,10 +8,25 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/nullstyle.css">
     <link rel="stylesheet" href="css/vars.css">
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+    <!-- <script type="text/javascript">
+        function googleTranslateElementInit() {
+          new google.translate.TranslateElement(
+            {
+              pageLanguage: 'en', // Мова оригіналу сторінки
+              autoDisplay: true
+            },
+            'google_translate_element'
+          );
+        }
+      </script>
+      <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+      
 </head>
 <body>
+
+    
 
     <div class="return__btn hidden">
         <img class="icon-button-arrow-1" src="./img/icon-button-arrow-10.svg" />
@@ -19,7 +34,10 @@
     
     <div class="wrapper">
         
+        
         <header class="header">
+
+            <div id="google_translate_element" ></div>
 
             <div class="header-logo">
 
@@ -42,12 +60,7 @@
                         <span>Email: </span>info.autodienst.at@gmail.com</a>
                 </div>
 
-
-                    <a href="#footer" class="header-action__btn">Зв'яжіться з нами</a>
-
-                <!-- <div class="header-action__btn">
-                    <a href="#footer" class="">Зв'яжіться з нами</a>
-                </div> -->
+                <a href="#footer" class="header-action__btn">Контакти</a>
 
             </div>
 
@@ -69,7 +82,7 @@
 
                 <div class="header-location__ico">
                     <a href="https://maps.app.goo.gl/29knWdxnhuDwvZxSA" target="_blank">
-                        <img src="/img/map.svg"  alt="" srcset="">
+                        <img src="img/map.svg"  alt="" srcset="">
                     </a>                    
                 </div>
 
@@ -153,15 +166,24 @@
                         <!-- <div class="slider-main-block__pagination swiper-pagination"></div> -->
                     
                         <!-- If we need navigation buttons -->
-                        <div class="slider-main-block__arrow swiper-button-prev"></div>
-                        <div class="slider-main-block__arrow swiper-button-next"></div>
+                        <!-- <div class="slider-main-block__arrow swiper-button-prev"></div>
+                        <div class="slider-main-block__arrow swiper-button-next"></div> -->
                     
                         <!-- If we need scrollbar -->
                         <!-- <div class="swiper-scrollbar"></div> -->
                 </div>
 
+                <div class="slider-main-block__arrows">
+
+                    <div class="slider-main-block__arrow swiper-button-prev"></div>
+                    <div class="slider-main-block__arrow swiper-button-next"></div>
+
+                </div>
+
+
+
                 <div class="about__action">
-                    <a href="#footer" class="header-action__btn">Зв'яжіться з нами</a>
+                    <a href="#footer" class="header-action__btn">Докладніше</a>
                 </div>
                 
 
@@ -173,7 +195,8 @@
                     <li class="why-choose-us__item">
 
                         <div class="item__img">
-                            <img src="" alt="">
+                            <img class="img__bacground" src="img/circle.svg" alt="">
+                            <img src="img/map_big.svg" alt="">
                         </div>
 
                         <p class="item__text">
@@ -187,6 +210,7 @@
                     <li class="why-choose-us__item">
 
                         <div class="item__img">
+                            <img class="img__bacground" src="img/circle.svg" alt="">
                             <img src="img/road_image.webp" alt="">
                         </div>
 
@@ -199,6 +223,7 @@
                     <li class="why-choose-us__item">
 
                         <div class="item__img">
+                            <img class="img__bacground" src="img/circle.svg" alt="">
                             <img src="img/auto_image.svg" alt="">
                         </div>
 
@@ -324,9 +349,7 @@
                             <span>Email: </span>info.autodienst.at@gmail.com</a>
                     </div>
 
-                    <div class="header-action__btn">
-                        <a href="#popup" class="popup-link">Зв'яжіться з нами</a>
-                    </div>
+                    <a href="#popup" class="popup-link header-action__btn">Зв'яжіться з нами</a>
 
                 </div>
 
@@ -348,7 +371,7 @@
 
                     <div class="header-location__ico">
                         <a href="https://maps.app.goo.gl/29knWdxnhuDwvZxSA" target="_blank">
-                            <img src="/img/map.svg"  alt="" srcset="">
+                            <img src="img/map.svg"  alt="" srcset="">
                         </a>                    
                     </div>
     
