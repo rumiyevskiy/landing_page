@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Autoelektrikmeister">
     <title>Autoelektrikmeister</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/nullstyle.css">
     <link rel="stylesheet" href="css/vars.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 </head>
 <body>
 
@@ -33,41 +36,48 @@
             <div class="header-action">
 
                 <div class="header-action__text">
-                    <a href="#">Tel: +678656557575585</a>
-                    <a href="#">Email: info.autodienst.at@gmail.com</a>
+                    <a href="#">
+                        <span>Tel: </span>+678656557575585</a>
+                    <a href="#">
+                        <span>Email: </span>info.autodienst.at@gmail.com</a>
                 </div>
 
-                <div class="header-action__btn">
-                    <a href="#popup" class="popup-link">Зв'яжіться з нами</a>
-                </div>
+
+                    <a href="#footer" class="header-action__btn">Зв'яжіться з нами</a>
+
+                <!-- <div class="header-action__btn">
+                    <a href="#footer" class="">Зв'яжіться з нами</a>
+                </div> -->
 
             </div>
 
             <div class="header-schedule">
 
                 <div class="header-schedule__work">
-                    <p>Пн-Пт</p>
+                    <p class="color-accent">Пн-Пт</p>
                     <p>09:00-18:00</p>
                 </div>
 
                 <div class="header-schedule__weekend">
-                    <p>Сб-Нд</p>
+                    <p class="color-accent">Сб-Нд</p>
                     <p>10:00-17:00</p>
                 </div>
                 
             </div>
 
-            <!-- <div class="header-location">
+            <div class="header-location">
 
                 <div class="header-location__ico">
-                    <img src="/img/map.svg" width="20px" height="20px" alt="" srcset="">
+                    <a href="https://maps.app.goo.gl/29knWdxnhuDwvZxSA" target="_blank">
+                        <img src="/img/map.svg"  alt="" srcset="">
+                    </a>                    
                 </div>
 
                 <address class="header-location__text">
                     <p class="color-accent">Адреса</p>
-                    <p>вул. Соборна 54</p>
+                    <p>Австрія. м. Гляйсдорф</p>
                 </address>
-            </div> -->
+            </div>
 
             <div class="buttons">
 
@@ -110,9 +120,50 @@
                     </p>
                 </div>
 
-                <div class="about-image">
-                    <img src="img/main_BIG.jpg" alt="" srcset="">
+                 <!-- Slider main container -->
+                 <div class="body-main-block__slider slider-main-block swiper">
+
+                    <!-- Additional required wrapper -->
+                    <div class="slider-main-block__wrapper swiper-wrapper">
+
+                        <!-- Slides -->
+                        <div class="slider-main-block__slide swiper-slide">
+                            <img src="img/imgs/acustic.jpg" alt="">
+                        </div>
+
+                        <div class="slider-main-block__slide swiper-slide">
+                            <img src="img/imgs/lamp.jpg" alt="">
+                        </div>
+
+                        <div class="slider-main-block__slide swiper-slide">
+                            <img src="img/imgs/monitors.jpg" alt="">
+                        </div>
+
+                        <div class="slider-main-block__slide swiper-slide">
+                            <img src="img/imgs/sensors.jpg" alt="">
+                        </div>
+
+                        <div class="slider-main-block__slide swiper-slide">
+                            <img src="img/imgs/test.jpg" alt="">
+                        </div>
+
+                    </div>
+
+                         <!-- If we need pagination -->
+                        <!-- <div class="slider-main-block__pagination swiper-pagination"></div> -->
+                    
+                        <!-- If we need navigation buttons -->
+                        <div class="slider-main-block__arrow swiper-button-prev"></div>
+                        <div class="slider-main-block__arrow swiper-button-next"></div>
+                    
+                        <!-- If we need scrollbar -->
+                        <!-- <div class="swiper-scrollbar"></div> -->
                 </div>
+
+                <div class="about__action">
+                    <a href="#footer" class="header-action__btn">Зв'яжіться з нами</a>
+                </div>
+                
 
             </section>
 
@@ -126,7 +177,9 @@
                         </div>
 
                         <p class="item__text">
-                            Зручне місцезнаходження
+                            <span>
+                                Зручне місцезнаходження
+                            </span>
                         </p>
 
                     </li>
@@ -244,7 +297,7 @@
 
         </main>
 
-        <footer class="footer">
+        <footer id="footer" class="footer">
 
                 <div class="header-logo">
 
@@ -265,8 +318,10 @@
                     </div>
 
                     <div class="header-action__text">
-                        <a href="#">Tel: +678656557575585</a>
-                        <a href="#">Email: info.autodienst.at@gmail.com</a>
+                        <a href="#">
+                            <span>Tel: </span>+678656557575585</a>
+                        <a href="#">
+                            <span>Email: </span>info.autodienst.at@gmail.com</a>
                     </div>
 
                     <div class="header-action__btn">
@@ -278,15 +333,29 @@
                 <div class="header-schedule">
 
                     <div class="header-schedule__work">
-                        <p>Пн-Пт</p>
+                        <p class="color-accent">Пн-Пт</p>
                         <p>09:00-18:00</p>
                     </div>
 
                     <div class="header-schedule__weekend">
-                        <p>Сб-Нд</p>
+                        <p class="color-accent">Сб-Нд</p>
                         <p>10:00-17:00</p>
                     </div>
                     
+                </div>
+
+                <div class="header-location">
+
+                    <div class="header-location__ico">
+                        <a href="https://maps.app.goo.gl/29knWdxnhuDwvZxSA" target="_blank">
+                            <img src="/img/map.svg"  alt="" srcset="">
+                        </a>                    
+                    </div>
+    
+                    <address class="header-location__text">
+                        <p class="color-accent">Адреса</p>
+                        <p>Австрія. м. Гляйсдорф</p>
+                    </address>
                 </div>
                 
         </footer>
@@ -388,6 +457,7 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script type="module" src="script/scripts.js"></script>
     
 </body>

@@ -253,13 +253,6 @@ body {
   .privacy-policy {
     color: var(--grey, #bbbbbb);
     text-align: left;
-    // font-family: var(--hint-font-family, "Manrope-Regular", sans-serif);
-    // font-size: var(--hint-font-size, 12px);
-    // line-height: var(--hint-line-height, 20px);
-    // font-weight: var(--hint-font-weight, 400);
-    // position: relative;
-    // flex: 1;
-  
     cursor: pointer;
   }
   
@@ -286,7 +279,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 10px 20px 0 20px;
 
         
     .buttons {
@@ -438,7 +431,9 @@ body {
         flex-direction: column;
         align-items: center;
 
-        .header-action__text, .header-schedule {
+        .header-action__text,
+        .header-schedule,
+        .header-location {
             display: none;
         }
     }
@@ -472,6 +467,7 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
+    gap: 10px;
 
 
     @media (max-width: 767px) {
@@ -491,6 +487,11 @@ body {
 
     a {
         pointer-events: none;
+        color: #ffffff;
+
+        span {
+            color: #3cd03c;
+        }
     }
 
     @media (max-width: 960px) {
@@ -504,6 +505,13 @@ body {
 }
 
 .header-action__btn {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    background-color: #715eb4;
+    color: #aaf710;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
 .header-schedule {
@@ -522,62 +530,149 @@ body {
 }
 
 .header-schedule__work {
-
+    .color-accent {
+        color: #3cd03c;
+    }
 }
 
 .header-schedule__weekend {
-}
-.header-location {
-}
-.header-location__ico {
-}
-.header-location__text {
-}
-.color-accent {
+    .color-accent {
+        color: #3cd03c;
+    }
 }
 
+.header-location {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+
+    &__ico {
+        width: 30px;
+
+        img {
+            max-height: 100%;
+        }        
+    }
+
+    &-location__text {
+        .color-accent {
+            color: #3cd03c;
+        }
+    }
+}
 
   
 .main {
     max-width: 80%;
     margin: 0 auto;
 }
+
 .about {
+
 }
+
 
 .about-title {
     text-align: center;
     @include adaptiv-font(55, 30);
+    margin: 10px 0 20px 0;
 
     @media (max-width: 767px) {
         margin: 10px;
     }
 }
+
 .about-content {
     text-align: center;
-}
+    padding: 10px 0 ;
 
-.about-content__text {
-}
-
-.about-image {
-    text-align: center;
-
-    img {
-        max-width: 100%;
+    &__text {
+        color: gold;
+        @include adaptiv-font(30, 18);
     }
 
 }
+
+.body-main-block__slider {
+    height: 70vh;
+    margin: 20px;
+    position: relative;
+}
+
+.slider-main-block__slide {
+
+}
+
+.slider-main-block__slide img {
+    display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+}
+
+
+
+.about__action {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
 .why-choose-us {
 }
+
 .why-choose-us__cards {
+    display: flex;
+    text-align: center;
+
+    .why-choose-us__item {
+        flex: 0 0 33.333%;
+        padding: 10px 15px;        
+   
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;    
+        
+        // background: url('../img/circle.svg') center / contain no-repeat;
+
+        .item__img {
+            flex: 0 0 50%;
+            display: flex;
+            justify-content: center;
+
+            min-height: 200px;
+            min-width: 200px;
+
+            padding: 40px;
+
+            background: url('../img/circle.svg') center / contain no-repeat;
+
+            img {
+                // width: 100%;
+                // height: 100%;
+                object-fit: contain;
+            }
+        }
+    }
+
+    @media (max-width: 767px) {
+        flex-direction: column;
+    }
+
+    .item__text {
+        flex: 0 1 50%;
+        display: flex;
+        align-items: center;
+    }
+
 }
-.why-choose-us__item {
-}
-.item__img {
-}
-.item__text {
-}
+
+
+
 .services {
 }
 .services-title {
