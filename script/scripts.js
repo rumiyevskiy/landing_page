@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     
-    const menuLinks = document.querySelectorAll('div[data-goto]');
+    const menuLinks = document.querySelectorAll('a[data-goto]');
     if (menuLinks.length > 0) {
         menuLinks.forEach (element => {
             element.addEventListener('click', onMenuLinkCkick);
@@ -187,6 +187,7 @@ document.addEventListener("DOMContentLoaded", function () {
             popupLink.addEventListener("click", function (e) {
                 const popupName = popupLink.getAttribute('href').replace('#', '');
                 const curentPopup = document.getElementById(popupName);
+                console.log("curentPopup: ", curentPopup);
                 popupOpen(curentPopup);
                 e.preventDefault();
             });
@@ -278,67 +279,92 @@ document.addEventListener("DOMContentLoaded", function () {
         // Optional parameters
         loop: true,
       
-        // // If we need pagination
-        // pagination: {
-        //   el: '.swiper-pagination',
-        // },
-      
-        // Navigation arrows
+          // Navigation arrows
         navigation: {
           nextEl: '.slider-main-block__arrow.swiper-button-next',
           prevEl: '.slider-main-block__arrow.swiper-button-prev',
         },
-      
-        // // And if we need scrollbar
-        // scrollbar: {
-        //   el: '.swiper-scrollbar',
-        // },
-    
         autoplay: {
           delay: 6000,
         },
       });
     
-      swiper.on('click', function (event) {
-        console.log('swiper click', event);
+    //   swiper.on('click', function (event) {
+    //     console.log('swiper click', event);
+    //   });
+    
+      document.querySelectorAll('.about-content2 .slide-image').forEach(image => {
+        image.addEventListener('click', (event) => {
+            const imagePath = event.target.src; // отримуємо шлях до зображення
+            const rezult = new URL(imagePath).pathname;
+            const relativePath = rezult.slice(1);
+            const imgElement = document.querySelector("#popup2 .popup-img__item");
+            if (imgElement) {
+                imgElement.src = relativePath; 
+            }
+            const curentPopup = document.getElementById("popup2");
+            popupOpen(curentPopup);
+
+        });
       });
 
+      const spans = document.querySelectorAll('span[data-init]');
+      const spanArr = Array.from(spans);
+  
+      function rollUp(object,number,max,delay) {
+         number = parseInt(number, 10) + 1;
+         if(number > max){return}
+          else {
+          object.innerHTML = number;
+          setTimeout(() => {rollUp(object,number,max,delay)}, delay);
+         }
+      }
+      
+      spanArr.forEach( (span) => {
+          rollUp(span, span.dataset.init, span.dataset.max,20)
+      });
 
+    const animItems = document.querySelectorAll ('.anim_items');
+    console.log('animItems: ', animItems );
 
-    // const animItems = document.querySelectorAll ('.anim_items');
-    // console.log('animItems: ', animItems );
+    if (animItems.length > 0) {
+        window.addEventListener('scroll', animOnScroll);
+        function animOnScroll() {
+            for (let index = 0; index < animItems.length; index++) {
+                const animItem = animItems[index];
+                const animItemHeight = animItem.offsetHeight;
+                const animItemOffset = offset(animItem).top;
+                const animStart = 4;
 
-    // if (animItems.length > 0) {
-    //     window.addEventListener('scroll', animOnScroll);
-    //     function animOnScroll() {
-    //         for (let index = 0; index < animItems.length; index++) {
-    //             const animItem = animItems[index];
-    //             const animItemHeight = animItem.offsetHeight;
-    //             const animItemOffset = offset(animItem).top;
-    //             const animStart = 4;
+                let animItemPoint = window.innerHeight - animItemHeight / animStart;
+                if (animItemHeight > window.innerHeight) {
+                    animItemPoint = window.innerHeight - window.innerHeight / animStart;
+                };
 
-    //             let animItemPoint = window.innerHeight - animItemHeight / animStart;
-    //             if (animItemHeight > window.innerHeight) {
-    //                 animItemPoint = window.innerHeight - window.innerHeight / animStart;
-    //             };
+                if ((scrollY > animItemOffset - animItemPoint) && scrollY < (animItemOffset + animItemHeight)) {
+                    animItem.classList.add('active');
 
-    //             if ((scrollY > animItemOffset - animItemPoint) && scrollY < (animItemOffset + animItemHeight)) {
-    //                 animItem.classList.add('active');
-    //             } else {
-    //                 animItem.classList.remove('active');
-    //             };
-    //         }
-    //     }
+                    spanArr.forEach( (span) => {
+                        rollUp(span, span.dataset.init, span.dataset.max,20)
+                    });
 
-    //     function offset (el) {
-    //         const rect = el.getBoundingClientRect(),
-    //             scrollLeft = window.scrollX || document.documentElement.scrollLeft,
-    //             scrollTop = window.scrollY || document.documentElement.scrollTop;
-    //         return {top: rect.top + scrollTop, left: rect.left + scrollLeft}
-    //     }
+                } else {
+                    animItem.classList.remove('active');
+                };
+            }
+        }
 
-    //     animOnScroll();
-    // };
+        function offset (el) {
+            const rect = el.getBoundingClientRect(),
+                scrollLeft = window.scrollX || document.documentElement.scrollLeft,
+                scrollTop = window.scrollY || document.documentElement.scrollTop;
+            return {top: rect.top + scrollTop, left: rect.left + scrollLeft}
+        }
+
+        animOnScroll();
+    };
+
+    
 
 
     function setGoogleTranslateLanguage(lang) {
