@@ -298,6 +298,9 @@ document.addEventListener("DOMContentLoaded", function () {
             const imagePath = event.target.src; // отримуємо шлях до зображення
             const rezult = new URL(imagePath).pathname;
             const relativePath = rezult.slice(1);
+            console.log("imagePath: ", imagePath);
+            console.log("relativePath: ", relativePath);
+            console.log("relativePath: ", relativePath);
             const imgElement = document.querySelector("#popup2 .popup-img__item");
             if (imgElement) {
                 imgElement.src = relativePath; 
