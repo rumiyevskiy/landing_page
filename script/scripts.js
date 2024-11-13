@@ -295,16 +295,17 @@ document.addEventListener("DOMContentLoaded", function () {
     
       document.querySelectorAll('.about-content2 .slide-image').forEach(image => {
         image.addEventListener('click', (event) => {
-            const imagePath = event.target.src; 
-            const rezult = new URL(imagePath).pathname;
-            const repoName = '/landing_page';
+            let imagePath = event.target.src; 
+            let rezult = new URL(imagePath).pathname;
+            console.log("imagePath: ", imagePath);
+            console.log("rezult: ", rezult);
+            let repoName = '/landing_page';
+            
             if (rezult.startsWith(repoName)) {
                 rezult = rezult.replace(repoName, '');
                 console.log('replaced');
             }            
             const relativePath = rezult.slice(1);
-            console.log("imagePath: ", imagePath);
-            console.log("rezult: ", rezult);
             console.log("relativePath: ", relativePath);
             const imgElement = document.querySelector("#popup2 .popup-img__item");
             if (imgElement) {
