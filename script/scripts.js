@@ -300,6 +300,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const repoName = 'landing_page';
             if (rezult.startsWith(repoName)) {
                 rezult = rezult.replace(repoName, '');
+                console.log('replaced');
             }            
             const relativePath = rezult.slice(1);
             console.log("imagePath: ", imagePath);
