@@ -300,11 +300,12 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log("imagePath: ", imagePath);
             console.log("rezult: ", rezult);
             let repoName = '/landing_page';
-            
+
             if (rezult.startsWith(repoName)) {
                 rezult = rezult.replace(repoName, '');
                 console.log('replaced');
-            }            
+            } 
+            
             const relativePath = rezult.slice(1);
             console.log("relativePath: ", relativePath);
             const imgElement = document.querySelector("#popup2 .popup-img__item");
