@@ -292,6 +292,7 @@ body.lock {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: var(--black2, rgba(50, 50, 50, 0.3725490196));
 }
 .header .div {
   display: flex;
@@ -357,8 +358,20 @@ body.lock {
   font-family: var(--btn-text-font-family, "Manrope-SemiBold", sans-serif);
   font-size: var(--btn-text-font-size, 16px);
   line-height: var(--btn-text-line-height, 28px);
-  letter-spacing: var(--btn-text-letter-spacing, 0.02em);
   font-weight: var(--btn-text-font-weight, 600);
+}
+@media (max-width: 1200px) {
+  .header .language-options-mob {
+    bottom: calc(-500% + 8px);
+    flex-direction: column;
+  }
+}
+@media (max-width: 767px) {
+  .header .language-options-mob {
+    top: calc(-200% + 8px);
+    bottom: auto;
+    flex-direction: row;
+  }
 }
 .header .language-options-mob div {
   padding: 8px 12px;
@@ -393,7 +406,7 @@ body.lock {
 @media (max-width: 992px) {
   .header .header-logo__text {
     color: #000;
-    text-shadow: 1px 1px 0px rgb(255, 255, 255), 0px 1px 0px rgb(255, 255, 255), -1px 1px 0px rgb(255, 255, 255), 1px 0px 0px rgb(255, 255, 255), 1px -1px 0px rgb(255, 255, 255), 0px -1px 0px rgb(255, 255, 255), -1px -1px 0px rgb(255, 255, 255), 0px 0px 0px rgb(255, 255, 255);
+    text-shadow: 1px 1px 0px rgb(255, 255, 255), 0px 1px 0px rgb(255, 255, 255), -1px 1px 0px rgb(255, 255, 255), 1px -1px 0px rgb(255, 255, 255), 0px -1px 0px rgb(255, 255, 255), -1px -1px 0px rgb(255, 255, 255);
   }
   .header .header-location {
     display: none;

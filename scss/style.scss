@@ -349,7 +349,7 @@ body {
         justify-content: center;
         align-items: center;
 
-        // background: var(--black2, #3232325f);
+        background: var(--black2, #3232325f);
 
     }
     
@@ -414,7 +414,7 @@ body {
         display: none;
         position: absolute;
         // top: calc(-300% + 8px);
-        bottom: calc(100% + 8px);;
+        bottom: calc(100% + 8px);
         // left: 0;
         // right: 0;
         background: #fff;
@@ -426,8 +426,19 @@ body {
         font-family: var(--btn-text-font-family, "Manrope-SemiBold", sans-serif);
         font-size: var(--btn-text-font-size, 16px);
         line-height: var(--btn-text-line-height, 28px);
-        letter-spacing: var(--btn-text-letter-spacing, 0.02em);
+        // letter-spacing: var(--btn-text-letter-spacing, 0.02em);
         font-weight: var(--btn-text-font-weight, 600);
+
+        @media (max-width: 1200px) {
+            bottom:  calc(-500% + 8px);
+            flex-direction: column;
+        }
+
+        @media (max-width: 767px) {
+            top: calc(-200% + 8px);
+            bottom: auto;
+            flex-direction: row;
+        }
     }
     
     .language-options-mob div {
@@ -490,11 +501,9 @@ body {
             text-shadow: 1px 1px 0px rgba(255, 255, 255, 1),
                          0px 1px 0px rgba(255, 255, 255, 1),
                          -1px 1px 0px rgba(255, 255, 255, 1),
-                         1px 0px 0px rgba(255, 255, 255, 1),
                          1px -1px 0px rgba(255, 255, 255, 1),
                          0px -1px 0px rgba(255, 255, 255, 1),
-                         -1px -1px 0px rgba(255, 255, 255, 1),
-                         0px 0px 0px rgba(255, 255, 255, 1);
+                         -1px -1px 0px rgba(255, 255, 255, 1);
 
         }
  
