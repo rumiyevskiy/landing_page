@@ -295,8 +295,12 @@ document.addEventListener("DOMContentLoaded", function () {
     
       document.querySelectorAll('.about-content2 .slide-image').forEach(image => {
         image.addEventListener('click', (event) => {
-            const imagePath = event.target.src; // отримуємо шлях до зображення
+            const imagePath = event.target.src; 
             const rezult = new URL(imagePath).pathname;
+            const repoName = 'landing_page';
+            if (rezult.startsWith(repoName)) {
+                rezult = rezult.replace(repoName, '');
+            }            
             const relativePath = rezult.slice(1);
             console.log("imagePath: ", imagePath);
             console.log("relativePath: ", relativePath);
