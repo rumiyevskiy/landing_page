@@ -34,9 +34,7 @@ body {
     }
 
     @media (max-width: 767px) {
-        background: 
-                    // url("../img/imgs/auto_electro_2.jpg") top / 100% 50%   no-repeat,
-                    url("../img/imgs/auto_electro.jpg") center / 100% no-repeat fixed;
+        background: none;
     }
 
 }
@@ -90,7 +88,7 @@ body {
 .wrapper {
     overflow: hidden;
     min-height: 100%;
-    // padding: 10px;
+    padding: 10px;
     background-color: #808080d7;
 }
 
@@ -451,6 +449,22 @@ body {
     }
 
     @media (max-width: 1200px) {
+        // .buttons {
+        //     order: 1;
+        //     margin-top: 10px;
+        // }
+
+        // .buttons .div {
+        //     display: none;
+        // }
+
+        // .buttons .setting {
+        //     display: flex;
+        // }
+    }
+
+    @media (max-width: 1200px) {
+
         .buttons {
             order: 1;
             margin-top: 10px;
@@ -463,9 +477,6 @@ body {
         .buttons .setting {
             display: flex;
         }
-    }
-
-    @media (max-width: 1200px) {
  
         .header-schedule {
             display: none;
@@ -473,6 +484,19 @@ body {
     }
 
     @media (max-width: 992px) {
+
+        .header-logo__text {
+            color: #000;
+            text-shadow: 1px 1px 0px rgba(255, 255, 255, 1),
+                         0px 1px 0px rgba(255, 255, 255, 1),
+                         -1px 1px 0px rgba(255, 255, 255, 1),
+                         1px 0px 0px rgba(255, 255, 255, 1),
+                         1px -1px 0px rgba(255, 255, 255, 1),
+                         0px -1px 0px rgba(255, 255, 255, 1),
+                         -1px -1px 0px rgba(255, 255, 255, 1),
+                         0px 0px 0px rgba(255, 255, 255, 1);
+
+        }
  
         .header-location {
             display: none;
@@ -482,6 +506,10 @@ body {
     @media (max-width: 767px) {
         flex-direction: column;
         align-items: center;
+        background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6)), url("../img/imgs/auto_electro_2.jpg");
+        background-size: cover;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
 
         .header-action__text,
         .header-schedule,
@@ -503,9 +531,11 @@ body {
 
     &__img {
         width: 80px;
+        overflow: hidden;
 
         img {
             max-width: 100%;
+            transform: scale(1.5);
         }
     }  
     
@@ -561,7 +591,7 @@ body {
 
 .header-action__btn {
     padding: 0.8rem 2rem;
-    font-size: 1rem;
+    font-size: 1.8rem;
     background-color: rgb(59, 56, 56);
     border: 1px solid #ffffff;
     color: #ffffff;
@@ -628,16 +658,21 @@ body {
     max-width: 90%;
     margin: 0 auto;
     padding: 0 20px;
-    // background: url("../img/imgs/auto_electro_8612.PNG")  50%  no-repeat;
+
 
     @media (max-width: 767px) {
-        // background: url("../img/imgs/auto_electro_8612.PNG")  top / cover no-repeat;
+        padding: 0 0;
     }
 }
 
 .about {
     // position: relative;
-    margin: 0 20px;   
+    margin: 0 20px; 
+    
+    @media (max-width: 992px) {
+        background: url("../img/imgs/auto_electro_8612.PNG") top / 100% no-repeat,
+                    url("../img/imgs/auto_electro.jpg") 50% 50% / cover no-repeat;
+    }
     
     @media (max-width: 767px) {
         margin: 0 0;
@@ -648,6 +683,19 @@ body {
     text-align: center;
     @include adaptiv-font(55, 30);
     margin: 10px 0 20px 0;
+
+    @media (max-width: 992px) {
+        
+            text-shadow: 
+                        1px 1px 0px rgba(0, 0, 0, 1),
+                        0px 1px 0px rgba(0, 0, 0, 1),
+                        -1px 1px 0px rgba(0, 0, 0, 1),
+                        1px 0px 0px rgba(0, 0, 0, 1),
+                        1px -1px 0px rgba(0, 0, 0, 1),
+                        0px -1px 0px rgba(0, 0, 0, 1),
+                        -1px -1px 0px rgba(0, 0, 0, 1),
+                        0px 0px 0px rgba(0, 0, 0, 1); 
+    }
 
     @media (max-width: 767px) {
         margin: 10px;
@@ -677,7 +725,8 @@ body {
     border-radius: 10px;
 
     @media (max-width: 767px) {
-        height: 60vh;
+        // height: 60vh;
+        max-height: 200px;
     }   
 }
 
@@ -844,8 +893,7 @@ body {
     }
 
     .header-action__btn {
-        width: 130px;
-        margin: 0 auto;
+
     }
 
      @media (max-width: 767px) {
@@ -937,11 +985,16 @@ body {
 }
 
 .our__team {
+
+    .our__team-action {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
  
     .header-action__btn {
-        display: block;
-        margin: 10px auto;
-        width: 130px;
+
+
     }
 
     .why-choose-us__item {
@@ -970,20 +1023,23 @@ body {
         background-color: #eae8e8;
         overflow: hidden;
 
+        border-radius: 50%;
+
         img {
             max-width: 100%;
             height: 100%;
             object-fit: cover;
             object-position: top;
-            border-radius: 50%;
         }
     }
 
-    .why-choose-us__cards .why-choose-us__item:last-child img:not([class*=img__bacground]) {
+    .why-choose-us__item:last-child img:not([class*=img__bacground]) {
         transform: scale(1);
     }
 
 }
+
+
 
 
 
@@ -1074,12 +1130,14 @@ body {
                 display: flex;
                 justify-content: center;
                 font-size: 38px;
+                align-items: center;
             }
 
             .reviews-body__item-text {
                 padding: 0 10px;
 
                 .reviews-subtitle {
+                    flex-wrap: wrap;
                     margin-bottom: 10px;
                 }
             }
@@ -1191,6 +1249,10 @@ body {
 
         a {
             color: #ffffff;
+        }
+
+        @media (max-width: 767px) {
+            flex-wrap: wrap;
         }
         
     }

@@ -297,17 +297,12 @@ document.addEventListener("DOMContentLoaded", function () {
         image.addEventListener('click', (event) => {
             let imagePath = event.target.src; 
             let rezult = new URL(imagePath).pathname;
-            console.log("imagePath: ", imagePath);
-            console.log("rezult: ", rezult);
             let repoName = '/landing_page';
-
             if (rezult.startsWith(repoName)) {
                 rezult = rezult.replace(repoName, '');
                 console.log('replaced');
-            } 
-            
+            }             
             const relativePath = rezult.slice(1);
-            console.log("relativePath: ", relativePath);
             const imgElement = document.querySelector("#popup2 .popup-img__item");
             if (imgElement) {
                 imgElement.src = relativePath; 
@@ -317,22 +312,79 @@ document.addEventListener("DOMContentLoaded", function () {
 
         });
       });
+    
+    
+    // *****************************************************************
 
-      const spans = document.querySelectorAll('span[data-init]');
-      const spanArr = Array.from(spans);
+    //   const spans = document.querySelectorAll('span[data-init]');
+    //   const spanArr = Array.from(spans);
   
-      function rollUp(object,number,max,delay) {
-         number = parseInt(number, 10) + 1;
-         if(number > max){return}
-          else {
-          object.innerHTML = number;
-          setTimeout(() => {rollUp(object,number,max,delay)}, delay);
-         }
-      }
+    //   function rollUp(object,number,max,delay) {
+    //      number = parseInt(number, 10) + 1;
+    //      if(number > max){return}
+    //       else {
+    //       object.innerHTML = number;
+    //       setTimeout(() => {rollUp(object,number,max,delay)}, delay);
+    //      }
+    //   }
       
-      spanArr.forEach( (span) => {
-          rollUp(span, span.dataset.init, span.dataset.max,20)
-      });
+    //   spanArr.forEach( (span) => {
+    //       rollUp(span, span.dataset.init, span.dataset.max,10)
+    //   });
+    
+    
+    function digitsCountersInit(digitsCountersItems) {
+        let digitsCounters = digitsCountersItems ? digitsCountersItems : document.querySelectorAll("[data-digits-counter]");
+        if (digitsCounters) {
+            digitsCounters.forEach(digitsCounter => {
+                digitsCountersAnimate(digitsCounter);
+            });
+        }
+    }
+
+    function digitsCountersAnimate(digitsCounter) {
+        let startTimestamp = null;
+        const duration = parseInt(digitsCounter.dataset.digitsCounter) ? parseInt(digitsCounter.dataset.digitsCounter) : 1000;
+        const startValue = parseInt(digitsCounter.innerHTML);
+        const startPosition = 0;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            digitsCounter.innerHTML = Math.floor(progress * (startPosition + startValue));
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            }
+        };
+        window.requestAnimationFrame(step);
+
+    }
+
+    let options = {
+        threshold: 0.3
+    }
+
+    let observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const targetElement = entry.target;
+                const digitsCountersItems = targetElement.querySelectorAll("[data-digits-counter]");
+                if (digitsCountersItems.length) {
+                    digitsCountersInit(digitsCountersItems);
+                }
+                // observer.unobserve(targetElement);
+            }
+        });
+    }, options);
+
+    let sections = document.querySelectorAll(".running-numbers div");
+    if (sections.length) {
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    }
+
+    
+    // *****************************************************************
 
     const animItems = document.querySelectorAll ('.anim_items');
     console.log('animItems: ', animItems );
@@ -353,11 +405,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 if ((scrollY > animItemOffset - animItemPoint) && scrollY < (animItemOffset + animItemHeight)) {
                     animItem.classList.add('active');
-
-                    spanArr.forEach( (span) => {
-                        rollUp(span, span.dataset.init, span.dataset.max,20)
-                    });
-
                 } else {
                     animItem.classList.remove('active');
                 };
@@ -374,27 +421,7 @@ document.addEventListener("DOMContentLoaded", function () {
         animOnScroll();
     };
 
-    
-
-
-    function setGoogleTranslateLanguage(lang) {
-      var select = document.querySelector("#google_translate_element select");
-      if (select) {
-        for (var i = 0; i < select.options.length; i++) {
-          if (select.options[i].value.indexOf(lang) > -1) {
-            select.selectedIndex = i;
-            select.dispatchEvent(new Event("change"));
-            break;
-          }
-        }
-      }
-    }
-  
-    window.onload = function() {
-      var userLang = navigator.language || navigator.userLanguage;
-      var langCode = userLang.substring(0, 2); // Беремо лише перші дві літери коду мови
-      setGoogleTranslateLanguage(langCode);
-    };
+    // *****************************************************************
 
   
 });

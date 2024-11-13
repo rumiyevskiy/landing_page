@@ -23,7 +23,7 @@ body.lock {
 }
 @media (max-width: 767px) {
   body {
-    background: url("../img/imgs/auto_electro.jpg") center/100% no-repeat fixed;
+    background: none;
   }
 }
 
@@ -71,6 +71,7 @@ body.lock {
 .wrapper {
   overflow: hidden;
   min-height: 100%;
+  padding: 10px;
   background-color: rgba(128, 128, 128, 0.8431372549);
 }
 
@@ -385,13 +386,15 @@ body.lock {
   .header .buttons .setting {
     display: flex;
   }
-}
-@media (max-width: 1200px) {
   .header .header-schedule {
     display: none;
   }
 }
 @media (max-width: 992px) {
+  .header .header-logo__text {
+    color: #000;
+    text-shadow: 1px 1px 0px rgb(255, 255, 255), 0px 1px 0px rgb(255, 255, 255), -1px 1px 0px rgb(255, 255, 255), 1px 0px 0px rgb(255, 255, 255), 1px -1px 0px rgb(255, 255, 255), 0px -1px 0px rgb(255, 255, 255), -1px -1px 0px rgb(255, 255, 255), 0px 0px 0px rgb(255, 255, 255);
+  }
   .header .header-location {
     display: none;
   }
@@ -400,6 +403,10 @@ body.lock {
   .header {
     flex-direction: column;
     align-items: center;
+    background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6)), url("../img/imgs/auto_electro_2.jpg");
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
   }
   .header .header-action__text,
   .header .header-schedule,
@@ -419,9 +426,11 @@ body.lock {
 }
 .header-logo__img {
   width: 80px;
+  overflow: hidden;
 }
 .header-logo__img img {
   max-width: 100%;
+  transform: scale(1.5);
 }
 @media (max-width: 767px) {
   .header-logo {
@@ -476,7 +485,7 @@ body.lock {
 
 .header-action__btn {
   padding: 0.8rem 2rem;
-  font-size: 1rem;
+  font-size: 1.8rem;
   background-color: rgb(59, 56, 56);
   border: 1px solid #ffffff;
   color: #ffffff;
@@ -536,8 +545,19 @@ body.lock {
   margin: 0 auto;
   padding: 0 20px;
 }
+@media (max-width: 767px) {
+  .main {
+    padding: 0 0;
+  }
+}
+
 .about {
   margin: 0 20px;
+}
+@media (max-width: 992px) {
+  .about {
+    background: url("../img/imgs/auto_electro_8612.PNG") top/100% no-repeat, url("../img/imgs/auto_electro.jpg") 50% 50%/cover no-repeat;
+  }
 }
 @media (max-width: 767px) {
   .about {
@@ -549,6 +569,11 @@ body.lock {
   text-align: center;
   font-size: calc(30px + 25 * (100vw - 320px) / 1120);
   margin: 10px 0 20px 0;
+}
+@media (max-width: 992px) {
+  .about-title {
+    text-shadow: 1px 1px 0px rgb(0, 0, 0), 0px 1px 0px rgb(0, 0, 0), -1px 1px 0px rgb(0, 0, 0), 1px 0px 0px rgb(0, 0, 0), 1px -1px 0px rgb(0, 0, 0), 0px -1px 0px rgb(0, 0, 0), -1px -1px 0px rgb(0, 0, 0), 0px 0px 0px rgb(0, 0, 0);
+  }
 }
 @media (max-width: 767px) {
   .about-title {
@@ -578,7 +603,7 @@ body.lock {
 }
 @media (max-width: 767px) {
   .body-main-block__slider {
-    height: 60vh;
+    max-height: 200px;
   }
 }
 
@@ -717,10 +742,6 @@ body.lock {
   text-align: center;
   color: gold;
 }
-.about-content3 .header-action__btn {
-  width: 130px;
-  margin: 0 auto;
-}
 @media (max-width: 767px) {
   .about-content3 {
     flex-direction: column;
@@ -788,10 +809,10 @@ body.lock {
   color: #27fb27;
 }
 
-.our__team .header-action__btn {
-  display: block;
-  margin: 10px auto;
-  width: 130px;
+.our__team .our__team-action {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
 }
 .our__team .why-choose-us__item {
   flex: 0 0 33.333%;
@@ -812,6 +833,7 @@ body.lock {
   position: relative;
   background-color: #eae8e8;
   overflow: hidden;
+  border-radius: 50%;
 }
 .our__team .why-choose-us__cards .why-choose-us__item .item__img img {
   max-width: 100%;
@@ -820,9 +842,8 @@ body.lock {
      object-fit: cover;
   -o-object-position: top;
      object-position: top;
-  border-radius: 50%;
 }
-.our__team .why-choose-us__cards .why-choose-us__item:last-child img:not([class*=img__bacground]) {
+.our__team .why-choose-us__item:last-child img:not([class*=img__bacground]) {
   transform: scale(1);
 }
 
@@ -892,11 +913,13 @@ body.lock {
   display: flex;
   justify-content: center;
   font-size: 38px;
+  align-items: center;
 }
 .reviews .reviews-body .reviews-body__item .reviews-body__item-text {
   padding: 0 10px;
 }
 .reviews .reviews-body .reviews-body__item .reviews-body__item-text .reviews-subtitle {
+  flex-wrap: wrap;
   margin-bottom: 10px;
 }
 @media (max-width: 992px) {
@@ -990,4 +1013,9 @@ body.lock {
 }
 .footer .privacy-policy a {
   color: #ffffff;
+}
+@media (max-width: 767px) {
+  .footer .privacy-policy {
+    flex-wrap: wrap;
+  }
 }
