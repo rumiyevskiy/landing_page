@@ -669,17 +669,17 @@
                         <div class="socials">
 
                             <div class="header-location__ico">
-                                <a href="https://t.me/+380665809263?text=Autoelektrikmeister" target="_blank">
+                                <a href="https://t.me/+436602430111?text=Autoelektrikmeister" target="_blank">
                                     <img src="img/telegram_icon.svg"  alt="" srcset="">
                                 </a>                    
                             </div>
                             <div class="header-location__ico">
-                                <a href="viber://chat?number=%2B+380665809263?text=Autoelektrikmeister" target="_blank">
+                                <a href="viber://chat?number=%2B+436602430111?text=Autoelektrikmeister" target="_blank">
                                     <img src="img/viber_icon.svg"  alt="" srcset="">
                                 </a>                    
                             </div>
                             <div class="header-location__ico">
-                                <a href="https://wa.me/380665809263?text=Autoelektrikmeister" target="_blank">
+                                <a href="https://wa.me/+436602430111?text=Autoelektrikmeister" target="_blank">
                                     <img src="img/whatsapp_icon.svg"  alt="" srcset="">
                                 </a>                    
                             </div>
@@ -768,34 +768,49 @@
                 <a href="#" class="popup__close close-popup">X</a>
                 <div class="popup__title">Зв'яжіться з нами</div>
                 <div class="popup__form">
-                    <form class="full-form" action="mailto:info.autodienst.at@gmail.com" method="post" enctype="text/plain">
+                    <form id="form" class="full-form" action="#" method="post" enctype="text/plain">
+                    <!-- <form class="full-form" action="mailto:info.autodienst.at@gmail.com" method="post" enctype="text/plain"> -->
                         <div class="form3">
                         
-                            <input for="name" data-translate="your_name" placeholder="Ім’я" class="input" type="text"
-                                id="name" name="name" required >
+                            <input for="name" data-translate="your_name" placeholder="Ім’я" class="input __req" type="text"
+                                id="name" name="name"  >
     
-                            <input class="input" for="phone" data-translate="phone" placeholder="Телефон" type="tel"
-                                id="phone" name="phone" required >
+                            <input class="input __req" for="phone" data-translate="phone" placeholder="Телефон" type="tel"
+                                id="phone" name="phone"  >
     
-                            <input class="input" for="email" data-translate="email" placeholder="E-mail" type="email"
-                                id="email" name="email" required >
+                            <input class="input __req" for="email" data-translate="email" placeholder="E-mail" type="email"
+                                id="email" name="email"  >
     
                             <input class="input" for="request" data-translate="your_request" placeholder="Ваш запит"
-                                id="request" name="request" rows="4" required>
+                                id="request" name="request" rows="4" >
 
-                                <select name="select" id="select">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </select>
+                            <select class="input __req" for="select_type" name="select_type"  id="select_type" name="select_type" >
+                                <option value="" disabled selected>Тип авто</option>
+                                <option value="седан">Седан</option>
+                                <option value="кросовер">Кросовер</option>
+                                <option value="внедорожник">Внедорожник</option>
+                                <option value="спортивний_автомобіль">Спортивний автомобіль</option>
+                             </select>
+
+                            <select class="input __req" for="select_services" name="select_services"  id="select_services" name="select_services" >
+                                <option value="" disabled selected>Послуги</option>
+                                <option value="діагностика_ходової">Діагностика ходової</option>
+                                <option value="комп'ютерна_діагностика">Комп'ютерна діагностика</option>
+                                <option value="ремонт_рулевої">Ремонт рулевої</option>
+                                <option value="ремонт_газової_установки">Ремонт газової установки</option>
+                                <option value="ремонт_тормозної_системи">Ремонт тормозної системи</option>
+                                <option value="заправка_кондиціонерів">Заправка кондиціонерів</option>
+                                <option value="заміна_тормозної_рідини">Заміна тормозної рідини</option>
+                                <option value="ремонт_глушителя">Ремонт глушителя</option>
+                                <option value="заміна_ламп">Заміна ламп</option>
+                                <option value="чистка_кондиціонера">Чистка кондиціонера</option>
+                             </select>
                         
     
                             <div class="confirmation">
     
                                 <div class="checkbox-light">
-                                    <input type="checkbox" id="privacy" class="privacy" checked name="privacy">
+                                    <input type="checkbox" id="privacy" class="privacy __req" checked name="privacy">
                                     <div class="rect"></div>
                                 </div>
     

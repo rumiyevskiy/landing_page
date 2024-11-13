@@ -75,6 +75,10 @@ body.lock {
   background-color: rgba(128, 128, 128, 0.8431372549);
 }
 
+.__error {
+  border: 1px solid #ff0000;
+}
+
 .popup {
   position: fixed;
   width: 100%;

@@ -423,5 +423,94 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // *****************************************************************
 
+    const mainForm = document.getElementById('form');
+    // const mainForm = document.getElementById('form').reset();
+    // let formInfo = document.querySelector('.form__inform');
+    // formInfo.innerHTML = '';
+
+ 
+    async function formSend(e) {
+        e.preventDefault();
+
+        let error = formValidate(mainForm);
+
+        const fields = document.querySelectorAll('input, select, textarea');
+        const valuesObj = {};
+        const valuesArr = [];
+        
+        fields.forEach(field => {
+            const { name, value, type, checked } = field;
+
+            valuesObj[name] = {
+                type: type,
+                value: type === 'checkbox' ? checked : value
+            };
+
+            valuesArr.push(type === 'checkbox' ? checked : value);
+
+            // valuesArr.push({
+            //     name: name,
+            //     type: type,
+            //     value: value
+            // });
+        })
+
+        if (error === 0) {
+            // formInfo.innerHTML = 'The data is formed into an array and an object (look at the console) and is ready to be sent';
+            console.log('valuesObj: ', valuesObj);
+            console.log('valuesArr: ', valuesArr);
+
+        } else {
+            alert('Please fill in the marked fields!');
+        }
+    }
+
+    function formValidate(mainForm) {
+        let error = 0;
+        let formReq = document.querySelectorAll('.__req');
+        console.log("formReq: ", formReq);
+
+        for (let i = 0; i < formReq.length; i++) {
+            const input = formReq[i];
+            formRemoveError(input);
+
+            if (input.classList.contains("__email")) {
+                if (emailTest(input)) {
+                    formAddError(input);
+
+                    error++;
+                }
+            } else if (input.getAttribute("type") === 'checkbox' && input.checked === false) {
+                formAddError(input);
+                    
+                error++;
+            } else {
+                if (input.value === '') {
+                    formAddError(input);
+                    
+                    error++;
+                }
+            }
+        }
+        return error;
+        }
+
+    function formAddError(input) {
+        input.parentElement.classList.add('__error');
+        input.classList.add('__error');
+    }
+
+    function formRemoveError(input) {
+        input.parentElement.classList.remove('__error');
+        input.classList.remove('__error');
+    }
+
+    function emailTest(input) {
+        return !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test(input.value);
+    }
+
+    mainForm.addEventListener('submit', formSend);
+
+    // *****************************************************************
   
 });
