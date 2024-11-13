@@ -303,7 +303,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }            
             const relativePath = rezult.slice(1);
             console.log("imagePath: ", imagePath);
-            console.log("relativePath: ", relativePath);
+            console.log("rezult: ", rezult);
             console.log("relativePath: ", relativePath);
             const imgElement = document.querySelector("#popup2 .popup-img__item");
             if (imgElement) {
