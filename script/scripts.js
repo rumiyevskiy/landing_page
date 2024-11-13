@@ -297,7 +297,7 @@ document.addEventListener("DOMContentLoaded", function () {
         image.addEventListener('click', (event) => {
             const imagePath = event.target.src; 
             const rezult = new URL(imagePath).pathname;
-            const repoName = 'landing_page';
+            const repoName = '/landing_page';
             if (rezult.startsWith(repoName)) {
                 rezult = rezult.replace(repoName, '');
                 console.log('replaced');
