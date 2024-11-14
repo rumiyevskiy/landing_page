@@ -17,6 +17,7 @@
     // scrollbar-width: thin;
 }
 
+
 $maxWidth: 1440;
 
 @mixin adaptiv-font($pcSize, $mobSize) {
@@ -252,6 +253,11 @@ body {
         left: 0%;
         bottom: 0%;
         top: 0%;
+
+        &.error {
+            border: 2px solid red;
+        }
+        
     }
   
     .rect::after {

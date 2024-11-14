@@ -768,31 +768,32 @@
                 <a href="#" class="popup__close close-popup">X</a>
                 <div class="popup__title">Зв'яжіться з нами</div>
                 <div class="popup__form">
-                    <form id="form" class="full-form" action="#" method="post" enctype="text/plain">
-                    <!-- <form class="full-form" action="mailto:info.autodienst.at@gmail.com" method="post" enctype="text/plain"> -->
+                    <!-- <form id="form" class="full-form" action="telegram.php" method="post" enctype="text/plain" accept-charset="UTF-8"> -->
+                    <!-- <form class="full-form" action="mailto:info.autodienst.at@gmail.com" method="post" enctype="text/plain" accept-charset="UTF-8"> -->
+                    <form id="form" class="full-form"  method="post" enctype="text/plain" accept-charset="UTF-8">
                         <div class="form3">
                         
                             <input for="name" data-translate="your_name" placeholder="Ім’я" class="input __req" type="text"
-                                id="name" name="name"  >
+                                id="name" name="name"  required>
     
                             <input class="input __req" for="phone" data-translate="phone" placeholder="Телефон" type="tel"
-                                id="phone" name="phone"  >
+                                id="phone" name="phone"  required>
     
                             <input class="input __req" for="email" data-translate="email" placeholder="E-mail" type="email"
-                                id="email" name="email"  >
+                                id="email" name="email" required >
     
                             <input class="input" for="request" data-translate="your_request" placeholder="Ваш запит"
                                 id="request" name="request" rows="4" >
 
-                            <select class="input __req" for="select_type" name="select_type"  id="select_type" name="select_type" >
+                            <select class="input __req" for="select_type" name="select_type"  id="select_type"  required>
                                 <option value="" disabled selected>Тип авто</option>
-                                <option value="седан">Седан</option>
+                                <option value="Sedan">Седан</option>
                                 <option value="кросовер">Кросовер</option>
                                 <option value="внедорожник">Внедорожник</option>
                                 <option value="спортивний_автомобіль">Спортивний автомобіль</option>
                              </select>
 
-                            <select class="input __req" for="select_services" name="select_services"  id="select_services" name="select_services" >
+                            <select class="input __req" for="select_services" name="select_services"  id="select_services"  required>
                                 <option value="" disabled selected>Послуги</option>
                                 <option value="діагностика_ходової">Діагностика ходової</option>
                                 <option value="комп'ютерна_діагностика">Комп'ютерна діагностика</option>
@@ -810,7 +811,7 @@
                             <div class="confirmation">
     
                                 <div class="checkbox-light">
-                                    <input type="checkbox" id="privacy" class="privacy __req" checked name="privacy">
+                                    <input type="checkbox" id="privacy" class="privacy __req" checked name="privacy" >
                                     <div class="rect"></div>
                                 </div>
     
@@ -824,7 +825,7 @@
     
                             </div>
     
-                            <button type="submit" class="button2">
+                            <button id="sendButton" type="submit" class="button2">
                                 <span data-translate="send">Надіслати</span>
                                 <img src="./img/icon-button-arrow-11.svg" class="icon-button-arrow-12" alt="arrow">
                             </button>

@@ -424,93 +424,130 @@ document.addEventListener("DOMContentLoaded", function () {
     // *****************************************************************
 
     const mainForm = document.getElementById('form');
+    console.log("mainForm", mainForm);
     // const mainForm = document.getElementById('form').reset();
     // let formInfo = document.querySelector('.form__inform');
     // formInfo.innerHTML = '';
 
  
-    async function formSend(e) {
-        e.preventDefault();
+    // async function formSend(e) {
+    //     e.preventDefault();
 
-        let error = formValidate(mainForm);
+    //     let error = formValidate(mainForm);
 
-        const fields = document.querySelectorAll('input, select, textarea');
-        const valuesObj = {};
-        const valuesArr = [];
+    //     const fields = document.querySelectorAll('input, select, textarea');
+    //     const valuesObj = {};
+    //     const valuesArr = [];
         
-        fields.forEach(field => {
-            const { name, value, type, checked } = field;
+    //     fields.forEach(field => {
+    //         const { name, value, type, checked } = field;
 
-            valuesObj[name] = {
-                type: type,
-                value: type === 'checkbox' ? checked : value
-            };
+    //         valuesObj[name] = {
+    //             type: type,
+    //             value: type === 'checkbox' ? checked : value
+    //         };
 
-            valuesArr.push(type === 'checkbox' ? checked : value);
+    //         valuesArr.push(type === 'checkbox' ? checked : value);
 
-            // valuesArr.push({
-            //     name: name,
-            //     type: type,
-            //     value: value
-            // });
-        })
+    //         // valuesArr.push({
+    //         //     name: name,
+    //         //     type: type,
+    //         //     value: value
+    //         // });
+    //     })
 
-        if (error === 0) {
-            // formInfo.innerHTML = 'The data is formed into an array and an object (look at the console) and is ready to be sent';
-            console.log('valuesObj: ', valuesObj);
-            console.log('valuesArr: ', valuesArr);
+    //     if (error === 0) {
+    //         // formInfo.innerHTML = 'The data is formed into an array and an object (look at the console) and is ready to be sent';
+    //         console.log('valuesObj: ', valuesObj);
+    //         console.log('valuesArr: ', valuesArr);
 
+    //     } else {
+    //         alert('Please fill in the marked fields!');
+    //     }
+    // }
+
+    // function formValidate(mainForm) {
+    //     let error = 0;
+    //     let formReq = document.querySelectorAll('.__req');
+    //     console.log("formReq: ", formReq);
+
+    //     for (let i = 0; i < formReq.length; i++) {
+    //         const input = formReq[i];
+    //         formRemoveError(input);
+
+    //         if (input.classList.contains("__email")) {
+    //             if (emailTest(input)) {
+    //                 formAddError(input);
+
+    //                 error++;
+    //             }
+    //         } else if (input.getAttribute("type") === 'checkbox' && input.checked === false) {
+    //             formAddError(input);
+                    
+    //             error++;
+    //         } else {
+    //             if (input.value === '') {
+    //                 formAddError(input);
+                    
+    //                 error++;
+    //             }
+    //         }
+    //     }
+    //     return error;
+    //     }
+
+    // function formAddError(input) {
+    //     input.parentElement.classList.add('__error');
+    //     input.classList.add('__error');
+    // }
+
+    // function formRemoveError(input) {
+    //     input.parentElement.classList.remove('__error');
+    //     input.classList.remove('__error');
+    // }
+
+    // function emailTest(input) {
+    //     return !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test(input.value);
+    // }
+
+    // mainForm.addEventListener('submit', formSend);
+
+    // *****************************
+    mainForm.addEventListener('submit', sendMail);
+
+    // document.getElementById("sendButton").addEventListener("click", sendMail);
+
+    function sendMail(event) {
+        event.preventDefault();
+        const name = encodeURIComponent(mainForm.name.value);
+        const phone = encodeURIComponent(mainForm.phone.value);
+        const email = encodeURIComponent(mainForm.email.value);
+        const request = encodeURIComponent(mainForm.request.value);
+        const select_type = encodeURIComponent(mainForm.select_type.value);
+        const select_services = encodeURIComponent(mainForm.select_services.value);
+        const privacy = encodeURIComponent(mainForm.privacy.checked);
+        
+        const subject = encodeURIComponent("Зворотній зв'язок");
+        const body = `Ім'я: ${name}%0D%0AТелефон: ${phone}%0D%0AПошта: ${email}%0D%0AПовідомлення: ${request}%0D%0AТип авто: ${select_type}%0D%0AПослуга: ${select_services}%0D%0AЗгода на обробку даних: ${privacy}`;
+    
+        // Створюємо mailto посилання з перекодованими даними
+        const mailtoLink = `mailto:info.autodienst.at@gmail.com?subject=${subject}&body=${body}`;
+    
+        // Відкриваємо mailto посилання для відправки листа
+
+        if (privacy !=="true") {
+            const confirmElem = document.querySelector(".confirmation .rect");
+            confirmElem.classList.add('error');
         } else {
-            alert('Please fill in the marked fields!');
-        }
-    }
-
-    function formValidate(mainForm) {
-        let error = 0;
-        let formReq = document.querySelectorAll('.__req');
-        console.log("formReq: ", formReq);
-
-        for (let i = 0; i < formReq.length; i++) {
-            const input = formReq[i];
-            formRemoveError(input);
-
-            if (input.classList.contains("__email")) {
-                if (emailTest(input)) {
-                    formAddError(input);
-
-                    error++;
-                }
-            } else if (input.getAttribute("type") === 'checkbox' && input.checked === false) {
-                formAddError(input);
-                    
-                error++;
-            } else {
-                if (input.value === '') {
-                    formAddError(input);
-                    
-                    error++;
-                }
-            }
-        }
-        return error;
+            window.location.href = mailtoLink;
         }
 
-    function formAddError(input) {
-        input.parentElement.classList.add('__error');
-        input.classList.add('__error');
-    }
-
-    function formRemoveError(input) {
-        input.parentElement.classList.remove('__error');
-        input.classList.remove('__error');
-    }
-
-    function emailTest(input) {
-        return !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test(input.value);
-    }
-
-    mainForm.addEventListener('submit', formSend);
+        // window.location.href = mailtoLink;
+        
+      }
 
     // *****************************************************************
   
 });
+
+

@@ -220,6 +220,9 @@ body.lock {
   bottom: 0%;
   top: 0%;
 }
+.popup__form .rect.error {
+  border: 2px solid red;
+}
 .popup__form .rect::after {
   content: "";
   width: 10px;
