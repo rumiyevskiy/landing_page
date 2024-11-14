@@ -794,14 +794,13 @@ body.lock {
   align-items: center;
   height: 200px;
   width: 200px;
-  padding: 40px;
-  position: relative;
+  background-color: #fff;
+  border-radius: 50%;
+  overflow: hidden;
 }
 .why-choose-us__cards .why-choose-us__item .item__img img {
-  -o-object-fit: contain;
-     object-fit: contain;
-}
-.why-choose-us__cards .why-choose-us__item .item__img img:last-child {
+  max-width: 100%;
+  max-height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
@@ -814,9 +813,6 @@ body.lock {
   top: 0;
   left: 7px;
   transform: scale(1.2);
-}
-.why-choose-us__cards .why-choose-us__item:last-child img:not([class*=img__bacground]) {
-  transform: scale(1.6);
 }
 @media (max-width: 767px) {
   .why-choose-us__cards {
