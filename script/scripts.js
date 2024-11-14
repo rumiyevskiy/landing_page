@@ -513,7 +513,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // mainForm.addEventListener('submit', formSend);
 
     // *****************************
-    mainForm.addEventListener('submit', sendMail);
+    // mainForm.addEventListener('submit', sendMail);
 
     // document.getElementById("sendButton").addEventListener("click", sendMail);
 
@@ -526,7 +526,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const select_type = encodeURIComponent(mainForm.select_type.value);
         const select_services = encodeURIComponent(mainForm.select_services.value);
         const privacy = encodeURIComponent(mainForm.privacy.checked);
-        
+
         const subject = encodeURIComponent("Зворотній зв'язок");
         const body = `Ім'я: ${name}%0D%0AТелефон: ${phone}%0D%0AПошта: ${email}%0D%0AПовідомлення: ${request}%0D%0AТип авто: ${select_type}%0D%0AПослуга: ${select_services}%0D%0AЗгода на обробку даних: ${privacy}`;
     
