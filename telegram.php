@@ -40,7 +40,8 @@ $arr = array(
 $txt = '';
 
 foreach($arr as $key => $value) {
-  $txt .= "<b>".$key."</b> ".urlencode($value)."%0A";
+  $txt .= "<b>".$key."</b> ".$value."%0A";
+  // $txt .= "<b>".$key."</b> ".urlencode($value)."%0A";
 };
 
 $sendToTelegram = fopen("https://api.telegram.org/bot{$token}/sendMessage?chat_id={$chat_id}&parse_mode=html&text={$txt}","r");
@@ -50,7 +51,8 @@ $sendToTelegram = fopen("https://api.telegram.org/bot{$token}/sendMessage?chat_i
 
 
 // Відправка текстового листа на email
-$to = "info.autodienst.at@gmail.com";  // Ваша електронна адреса
+// $to = "info.autodienst.at@gmail.com";  // annamax електронна адреса
+$to = "rumiyevskiy@gmail.com@gmail.com";  // Мій електронна адреса
 $subject = "Новий запит з сайту Autoelektrikmeister";  // Тема листа
 
 // Формування текстового повідомлення
@@ -72,13 +74,16 @@ if (mail($to, $subject, $message, $headers)) {
     // Якщо повідомлення в Telegram і email відправлено, показуємо спливаюче вікно
     echo "<script type='text/javascript'>
               alert('Letter sent!');
-              // window.location.href = 'thank-you.html';  // Перенаправлення на сторінку подяки
-          </script>";
+            </script>";
   } else {
-    echo "Помилка при відправці повідомлення в Telegram.";
+    echo "<script type='text/javascript'>
+              alert('Помилка при відправці повідомлення в Telegram.');
+            </script>";
   }
 } else {
-  echo "Помилка при відправці листа на email.";
+  echo "<script type='text/javascript'>
+              alert('Помилка при відправці листа на email.');
+            </script>";
 }
 
 // *****************************

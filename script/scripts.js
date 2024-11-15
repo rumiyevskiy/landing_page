@@ -410,7 +410,7 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("mainForm", mainForm);
 
     // *****************************
-    mainForm.addEventListener('submit', sendMail);
+    // mainForm.addEventListener('submit', sendMail);
 
     // document.getElementById("sendButton").addEventListener("click", sendMail);
 
