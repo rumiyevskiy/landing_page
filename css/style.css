@@ -245,8 +245,19 @@ body.lock {
   padding-left: 30px;
   z-index: 5;
 }
+.popup__form .sendButton-box {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+@media (max-width: 767px) {
+  .popup__form .sendButton-box {
+    flex-direction: column;
+  }
+}
 .popup__form .button2 {
-  width: 200px;
+  width: 150px;
   height: 50px;
   position: relative;
   background-color: #808080;
@@ -809,24 +820,16 @@ body.lock {
   -o-object-fit: cover;
      object-fit: cover;
 }
-.why-choose-us__cards .why-choose-us__item .item__img .img__bacground {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: contain;
-     object-fit: contain;
-  position: absolute;
-  top: 0;
-  left: 7px;
-  transform: scale(1.2);
-}
 @media (max-width: 767px) {
   .why-choose-us__cards {
     flex-direction: column;
   }
 }
 .why-choose-us__cards .item__text {
+  min-height: 60px;
   display: flex;
   align-items: center;
+  font-size: 20px;
   color: #27fb27;
 }
 
@@ -877,11 +880,17 @@ body.lock {
   background-color: rgba(105, 113, 74, 0.807);
   border-radius: 20px;
   border: 1px solid gold;
-  padding-bottom: 20px;
+  padding: 0 0 20px 0;
 }
 .services .services-title {
   font-size: 40px;
-  margin: 10px 0;
+  margin: 10px 10px;
+  text-align: center;
+}
+@media (max-width: 767px) {
+  .services .services-title {
+    font-size: 30px;
+  }
 }
 .services .services-content {
   width: 100%;
@@ -890,12 +899,19 @@ body.lock {
   flex-wrap: wrap;
   gap: 20px;
 }
+.services .services-content__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 10px;
+}
 .services .services-content__item .services-content__item-title {
   font-size: 20px;
   padding: 5px;
+  text-align: center;
 }
 .services .services-content__item .services-content__item-box {
-  margin: 10px;
+  margin: 10px 0 10px 20px;
 }
 .services .services-content__item .services-content__item-box .services-content__item-list li {
   margin: 20px 0;
@@ -906,6 +922,11 @@ body.lock {
     list-style: none;
   }
 }
+@media (max-width: 767px) {
+  .services .services-content__item {
+    width: 100%;
+  }
+}
 
 .reviews .reviews-title {
   font-size: 30px;
@@ -914,6 +935,7 @@ body.lock {
 .reviews .reviews-subtitle {
   display: flex;
   align-items: center;
+  gap: 5px;
 }
 .reviews .reviews-subtitle .stars .star {
   max-width: 20px;

@@ -7,12 +7,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const languageOptions = document.querySelector(".language-options");
     const languageOptionsMob = document.querySelector(".language-options-mob");
-
-    
-
-    // const mobMenuSwitcher = document.querySelector(".menu-title");
-    // const mobMenuField = document.querySelector(".menu__subBox");
-    // const mobMenuItems = document.querySelectorAll(".menu__subBox .link");
     
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         document.body.classList.add('_touch');
@@ -32,17 +26,40 @@ document.addEventListener("DOMContentLoaded", function () {
         document.body.classList.add('pc');
     }
 
-
+    // *************************************************************************************************
+    // for telegram bot
+    const optionValueTypeServicesArr = {};
+    // *************************************************************************************************
 
     const loadLanguage = async (lang) => {
         try {
             const response = await fetch(`./languages/${lang}.json`);
+            const responseUKR = await fetch(`./languages/uk.json`);
+
             const translations = await response.json();
+            const translationsUKR = await responseUKR.json();
+            
             document.querySelectorAll("[data-translate]").forEach(el => {
                 const key = el.getAttribute("data-translate");
                 el.textContent = translations[key];
-                // el.placeholder = translations[key];
+                el.placeholder = translations[key]; 
+               
             });
+
+
+            document.querySelectorAll("#select_services option").forEach(el => {
+                const elValue = el.getAttribute("value");
+                const key = el.getAttribute("data-translate");
+
+                if (elValue != null) {
+                    el.value = translations[key];
+
+                    optionValueTypeServicesArr[key] = translationsUKR[key];
+                }               
+                
+            });
+
+
         } catch (error) {
             console.error("Error loading language:", error);
         }
@@ -75,8 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
         for (let index = 0; index < currentLanguage.length; index++) {
             currentLanguage[index].textContent = langvar;
         }
-        // currentLanguage.textContent = langvar; 
-  
+      
         loadLanguage(lang).then(() => {
             languageOptions.style.display = "none";
         });
@@ -84,7 +100,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     
     const selectedLanguage = localStorage.getItem("selectedLanguage") || "en";
-    // const selectedLanguage = localStorage.getItem("selectedLanguage");
 
     let selLangvar;
 
@@ -99,8 +114,6 @@ document.addEventListener("DOMContentLoaded", function () {
     for (let index = 0; index < currentLanguage.length; index++) {
         currentLanguage[index].textContent = selLangvar;
     }
-
-    // currentLanguage.textContent = selLangvar;
 
     loadLanguage(selectedLanguage);
 
@@ -132,6 +145,9 @@ document.addEventListener("DOMContentLoaded", function () {
             languageOptionsMob.style.display = "none";
         }
     });
+
+
+// **********************************************************************
 
     
     const menuLinks = document.querySelectorAll('a[data-goto]');
@@ -172,6 +188,8 @@ document.addEventListener("DOMContentLoaded", function () {
             behavior: 'smooth'
         })
     });
+
+// ***********************************************************************
 
     const popupLinks = document.querySelectorAll('.popup-link');
     const body = document.querySelector('body');
@@ -274,6 +292,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     })
 
+// **************************************************************************
+
 
     const swiper = new Swiper('.slider-main-block', {
         // Optional parameters
@@ -288,10 +308,7 @@ document.addEventListener("DOMContentLoaded", function () {
           delay: 6000,
         },
       });
-    
-    //   swiper.on('click', function (event) {
-    //     console.log('swiper click', event);
-    //   });
+
     
       document.querySelectorAll('.about-content2 .slide-image').forEach(image => {
         image.addEventListener('click', (event) => {
@@ -354,7 +371,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (digitsCountersItems.length) {
                     digitsCountersInit(digitsCountersItems);
                 }
-                // observer.unobserve(targetElement);
             }
         });
     }, options);
@@ -407,41 +423,172 @@ document.addEventListener("DOMContentLoaded", function () {
     // *****************************************************************
 
     const mainForm = document.getElementById('form');
-    console.log("mainForm", mainForm);
 
-    // *****************************
-    // mainForm.addEventListener('submit', sendMail);
+        // Логіка обробки форми
+        mainForm.addEventListener('submit', (event) => {
+            event.preventDefault(); // Зупиняємо стандартну поведінку форми
+            sendTelegram(); // Викликаємо функцію для відправки в Telegram
+        });
 
-    // document.getElementById("sendButton").addEventListener("click", sendMail);
+        // Функція для відправки повідомлення в Telegram
+    async function sendTelegram() {
+            
 
-    function sendMail(event) {
-        event.preventDefault();
-        const name = encodeURIComponent(mainForm.name.value);
-        const phone = encodeURIComponent(mainForm.phone.value);
-        const email = encodeURIComponent(mainForm.email.value);
-        const request = encodeURIComponent(mainForm.request.value);
-        const select_type = encodeURIComponent(mainForm.select_type.value);
-        const select_services = encodeURIComponent(mainForm.select_services.value);
-        const privacy = encodeURIComponent(mainForm.privacy.checked);
+        let optionValueTypeServices = document.querySelector("#select_services");
 
-        const subject = encodeURIComponent("Зворотній зв'язок");
-        const body = `Ім'я: ${name}%0D%0AТелефон: ${phone}%0D%0AПошта: ${email}%0D%0AПовідомлення: ${request}%0D%0AТип авто: ${select_type}%0D%0AПослуга: ${select_services}%0D%0AЗгода на обробку даних: ${privacy}`;
+        const selectedOption = optionValueTypeServices.options[optionValueTypeServices.selectedIndex];
+        console.log('selectedOption: ', selectedOption);
+        const dataTranslate = selectedOption.getAttribute('data-translate');
+        console.log('dataTranslate: ', dataTranslate);
+       
+
+        console.log('optionValueTypeServicesArr: ', optionValueTypeServicesArr);
+        console.log("t:", typeof optionValueTypeServicesArr)
+        let optionValueTypeServicesUkr = optionValueTypeServicesArr[dataTranslate];
+        console.log('optionValueTypeServicesUkr: ', optionValueTypeServicesUkr);
+
+
+
+
+            const botToken = '7648355172:AAE4jsw4ZfadhgoEezXJyy0X7U4EQwFkkbQ'; // Токен бота
+            const chatId = '-4588952109'; // ID чату
+            const name = mainForm.name.value;
+            const phone = mainForm.phone.value;
+            const email = mainForm.email.value;
+            const request = mainForm.request.value;
+        
+            const select_type = mainForm.select_type.value;
+            const select_services = mainForm.select_services.value;
+            const select_servicesUkr = optionValueTypeServicesUkr;
+        
+            const privacy = mainForm.privacy.checked ? 'Так' : 'Ні';
+
+            const bodymessage = `
+                Запит з сайту Autoelektrikmeister
+                Ім'я: ${name}
+                Телефон: ${phone}
+                Пошта: ${email}
+                Повідомлення: ${request}
+                Тип авто: ${select_type}
+                Послуга: ${select_servicesUkr}
+                Згода на обробку даних: ${privacy}
+            `;
+
+            // Відправка через API Telegram
+            try {
+                const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: chatId,
+                        text: bodymessage
+                    })
+                });
+
+                const data = await response.json();
+                if (data.ok) {
+                    console.log('The message has been successfully sent!');
+                    alert('Thank you! Your message has been sent.');
+
+                    // sendEmailPHP();
+                    sendEmail(name, phone, email, request, select_type, select_services, privacy);
+                } else {
+                    console.error('Помилка Telegram:', data);
+                    alert('An error occurred while sending the message');
+                }
+            } catch (error) {
+                console.error('Помилка запиту:', error);
+                alert('An error occurred while sending the request.');
+            }
+        }
     
-        // Створюємо mailto посилання з перекодованими даними
-        const mailtoLink = `mailto:info.autodienst.at@gmail.com?subject=${subject}&body=${body}`;
-    
-        // Відкриваємо mailto посилання для відправки листа
+    function sendEmail(name, phone, email, request, select_type, select_services, privacy) {
+            
+            const subjectUKR = encodeURIComponent('Новий запит з сайту Autoelektrikmeister');
+            const subjectENG = encodeURIComponent('New request from the website Autoelektrikmeister');
+            const subjectDEU = encodeURIComponent('Neue Anfrage von der Website Autoelektrikmeister');
 
-        if (privacy !=="true") {
-            const confirmElem = document.querySelector(".confirmation .rect");
-            confirmElem.classList.add('error');
+            const bodyUKR = encodeURIComponent(`
+                Запит з сайту Autoelektrikmeister
+                Ім'я: ${name}
+                Телефон: ${phone}
+                Пошта: ${email}
+                Повідомлення: ${request}
+                Тип авто: ${select_type}
+                Послуга: ${select_services}
+                Згода на обробку даних: ${privacy}
+            `);
+
+            const bodyENG = encodeURIComponent(`
+                Request from the website (Запит з сайту) Autoelektrikmeister
+                Name (Ім'я): ${name}
+                Phone (Телефон): ${phone}
+                E-mail (Пошта): ${email}
+                Message (Повідомлення): ${request}
+                Car type(Тип авто): ${select_type}
+                Service (Послуга): ${select_services}
+                Consent to data processing (Згода на обробку даних): ${privacy}
+            `);
+
+            const bodyDEU = encodeURIComponent(`
+                Anfrage von der Website (Запит з сайту) Autoelektrikmeister
+                Name (Ім'я): ${name}
+                Telefon (Телефон): ${phone}
+                E-mail (Пошта): ${email}
+                Nachricht (Повідомлення): ${request}
+                Autotyp (Тип авто): ${select_type}
+                Dienstleistung (Послуга): ${select_services}
+                Einwilligung zur Datenverarbeitung (Згода на обробку даних): ${privacy}
+            `);
+
+        
+        const selectedLanguage = localStorage.getItem("selectedLanguage");
+
+        
+
+        let mailtoLink = "";
+          
+        if (selectedLanguage === "en") {
+
+            mailtoLink = `mailto:rumiyevskiy@gmail.com?subject=${subjectENG}&body=${bodyENG}`;
+
+        } else if (selectedLanguage === "de") {
+            
+            mailtoLink = `mailto:rumiyevskiy@gmail.com?subject=${subjectDEU}&body=${bodyDEU}`;
+
         } else {
+            
+            mailtoLink = `mailto:rumiyevskiy@gmail.com?subject=${subjectUKR}&body=${bodyUKR}`;
+
+        };
+
+             
+            // Відкриваємо посилання
             window.location.href = mailtoLink;
+
+        }
+    
+        function sendEmailPHP() {
+            const formData = new FormData(mainForm); // Отримуємо всі дані з форми
+        
+            fetch("send_email.php", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert("The form has been successfully sent to the email.");
+                } else {
+                    alert("An error occurred while sending the email");
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("An error occurred while submitting the form.");
+            });
         }
 
-        // window.location.href = mailtoLink;
-        
-      }
 
     // *****************************************************************
   
