@@ -31,6 +31,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const optionValueTypeServicesArr = {};
     // *************************************************************************************************
 
+    const browserLanguage = navigator.language || navigator.userLanguage;
+
+    let browsLangVar;
+  
+    if (browserLanguage.startsWith('uk')) {
+        browsLangVar = "uk";
+      } else if (browserLanguage.startsWith('de')) {
+        browsLangVar = "de";
+      } else {
+        browsLangVar = "en";
+    }
+    
     const loadLanguage = async (lang) => {
         try {
             const response = await fetch(`./languages/${lang}.json`);
@@ -99,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     
-    const selectedLanguage = localStorage.getItem("selectedLanguage") || "en";
+    const selectedLanguage = localStorage.getItem("selectedLanguage") || browsLangVar;
 
     let selLangvar;
 
@@ -437,21 +449,14 @@ document.addEventListener("DOMContentLoaded", function () {
         let optionValueTypeServices = document.querySelector("#select_services");
 
         const selectedOption = optionValueTypeServices.options[optionValueTypeServices.selectedIndex];
-        console.log('selectedOption: ', selectedOption);
+ 
         const dataTranslate = selectedOption.getAttribute('data-translate');
-        console.log('dataTranslate: ', dataTranslate);
-       
 
-        console.log('optionValueTypeServicesArr: ', optionValueTypeServicesArr);
-        console.log("t:", typeof optionValueTypeServicesArr)
         let optionValueTypeServicesUkr = optionValueTypeServicesArr[dataTranslate];
-        console.log('optionValueTypeServicesUkr: ', optionValueTypeServicesUkr);
 
-
-
-
-            const botToken = '7648355172:AAE4jsw4ZfadhgoEezXJyy0X7U4EQwFkkbQ'; // Токен бота
-            const chatId = '-4588952109'; // ID чату
+        const botToken = '7648355172:AAE4jsw4ZfadhgoEezXJyy0X7U4EQwFkkbQ'; // Токен бота
+        const chatId = '-4588952109'; // ID чату
+        
             const name = mainForm.name.value;
             const phone = mainForm.phone.value;
             const email = mainForm.email.value;
@@ -490,8 +495,15 @@ document.addEventListener("DOMContentLoaded", function () {
                     console.log('The message has been successfully sent!');
                     alert('Thank you! Your message has been sent.');
 
+                    // Автоматичне надсилання повідомлення на пошту за допомогою PHP(треба перевіряти), повідомлення не бачно
                     // sendEmailPHP();
-                    sendEmail(name, phone, email, request, select_type, select_services, privacy);
+
+                    // Відкриття додатку по замовчуванню для підтвердження та надсилання повідомлення на пошту
+                    // sendEmail(name, phone, email, request, select_type, select_services, privacy);
+
+                    // Автоматичне надсилання повідомлення на пошту, повідомлення не бачно
+                    sendEmail2();
+
                 } else {
                     console.error('Помилка Telegram:', data);
                     alert('An error occurred while sending the message');
@@ -540,7 +552,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 Dienstleistung (Послуга): ${select_services}
                 Einwilligung zur Datenverarbeitung (Згода на обробку даних): ${privacy}
             `);
-
         
         const selectedLanguage = localStorage.getItem("selectedLanguage");
 
@@ -566,7 +577,52 @@ document.addEventListener("DOMContentLoaded", function () {
             // Відкриваємо посилання
             window.location.href = mailtoLink;
 
-        }
+    }
+    
+    function sendEmail2() {
+
+        emailjs.init("_ruQbUC348SMI_KYA");
+
+        let optionValueTypeServices = document.querySelector("#select_services");
+
+        const selectedOption = optionValueTypeServices.options[optionValueTypeServices.selectedIndex];
+
+        const dataTranslate = selectedOption.getAttribute('data-translate');
+ 
+        let optionValueTypeServicesUkr = optionValueTypeServicesArr[dataTranslate]; 
+
+        const name = mainForm.name.value;
+        const phone = mainForm.phone.value;
+        const email = mainForm.email.value;
+        const request = mainForm.request.value;
+        const select_type = mainForm.select_type.value;
+        const select_services = optionValueTypeServicesUkr;
+        const privacy = mainForm.privacy.checked ? 'Так' : 'Ні';
+
+        // Параметри для Email.js
+        const templateParams = {
+            to_email: 'rumiyevskiy@gmail.com',
+            name: `${name} from site "Autoelektrikmeister" `,
+            phone: phone,
+            email: email,
+            comments: request,
+            carType: select_type,
+            service: select_services,
+            privacy: privacy,
+        };
+
+        
+
+        emailjs.send('service_oeydswb', 'template_2pd9prh', templateParams)
+            .then((response) => {
+                console.log('Email успішно відправлено!', response.status, response.text);
+                alert('Ваше повідомлення успішно відправлено!');
+            })
+            .catch((error) => {
+                console.error('Помилка відправки:', error);
+                alert('Сталася помилка при відправці.');
+            });
+    }
     
         function sendEmailPHP() {
             const formData = new FormData(mainForm); // Отримуємо всі дані з форми
