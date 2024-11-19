@@ -5,29 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Autoelektrikmeister">
     <title>Autoelektrikmeister</title>
+
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/nullstyle.css">
     <link rel="stylesheet" href="css/vars.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-    <link rel="icon" href="./img/free-icon-automotive-3577867.png" type="image/png">
-    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-    <!-- <script>
-        // Ініціалізація Email.js
-        document.addEventListener("DOMContentLoaded", () => {
-            emailjs.init("_ruQbUC348SMI_KYA"); // Замініть "YOUR_USER_ID" на свій User ID із EmailJS
-        });
-    </script> -->
-</head>
-<body>
 
-    
+    <link rel="icon" href="./img/free-icon-automotive-3577867.png" type="image/png">
+
+    <!-- Підключення слайдера -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+    <!-- Підключення emailjs для автоматичної відарвки повідомлень на потрібний email-->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+    <!-- Для підключення clarity та meta pixel вставляємо script-и отримані від клієнта: наприклад -->
+    <!-- <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "p0fei7hg7s");
+    </script> -->
+    <!-- Meta Pixel Code -->
+    <!-- <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1823804461483109');
+        fbq('track', 'PageView');
+        </script>
+        <noscript><img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=1823804461483109&ev=PageView&noscript=1"
+        /></noscript> -->
+        <!-- End Meta Pixel Code -->
+        
+</head>
+<body>    
 
     <div class="return__btn hidden">
         <img class="icon-button-arrow-1" src="./img/icon-button-arrow-10.svg" />
     </div>
     
-    <div class="wrapper">
-        
+    <div class="wrapper">        
         
         <header class="header">
 
@@ -785,8 +809,7 @@
                 <a href="#" class="popup__close close-popup">X</a>
                 <div data-translate="contact-us" class="popup__title">Зв'яжіться з нами</div>
                 <div class="popup__form">
-                    <!-- <form id="form" class="full-form" action="telegram.php" method="post" enctype="text/plain" accept-charset="UTF-8"> -->
-                    <!-- <form class="full-form" action="mailto:info.autodienst.at@gmail.com" method="post" enctype="text/plain" accept-charset="UTF-8"> -->
+
                     <form id="form" class="full-form" enctype="text/plain" accept-charset="UTF-8">
                         <div class="form3">
                         
@@ -841,7 +864,6 @@
                                     </a>
                                 </label>
 
-                                <!-- data-translate="agree_to_processing" -->
     
                             </div>
                             
@@ -856,15 +878,6 @@
                                 </button>
                             </div>
 
-                            <!-- <button id="sendButton" type="submit" class="button2">
-                                <span data-translate="send">Надіслати</span>
-                                <img src="./img/icon-button-arrow-11.svg" class="icon-button-arrow-12" alt="arrow">
-                            </button>
-                            <button id="resetButton" type="reset" class="button2">
-                                <span data-translate="reset">Reset</span>
-                                <img src="./img/icon-button-arrow-11.svg" class="icon-button-arrow-12" alt="arrow">
-                            </button> -->
-    
                         </div>
                     </form>
                 </div>

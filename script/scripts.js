@@ -571,9 +571,7 @@ document.addEventListener("DOMContentLoaded", function () {
             
             mailtoLink = `mailto:rumiyevskiy@gmail.com?subject=${subjectUKR}&body=${bodyUKR}`;
 
-        };
-
-             
+        };             
             // Відкриваємо посилання
             window.location.href = mailtoLink;
 
@@ -581,7 +579,9 @@ document.addEventListener("DOMContentLoaded", function () {
     
     function sendEmail2() {
 
-        emailjs.init("_ruQbUC348SMI_KYA");
+        let emailjsID = "_ruQbUC348SMI_KYA";
+
+        emailjs.init(emailjsID);
 
         let optionValueTypeServices = document.querySelector("#select_services");
 
@@ -611,9 +611,10 @@ document.addEventListener("DOMContentLoaded", function () {
             privacy: privacy,
         };
 
-        
+        let SERVICE_ID = 'service_oeydswb';
+        let TEMPLATE_ID = 'template_2pd9prh';
 
-        emailjs.send('service_oeydswb', 'template_2pd9prh', templateParams)
+        emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams)
             .then((response) => {
                 console.log('Email успішно відправлено!', response.status, response.text);
                 alert('Ваше повідомлення успішно відправлено!');
