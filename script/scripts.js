@@ -319,6 +319,20 @@ document.addEventListener("DOMContentLoaded", function () {
         autoplay: {
           delay: 6000,
         },
+    });
+    
+    const swiper2 = new Swiper('.slider-main-block2', {
+        // Optional parameters
+        loop: true,
+      
+          // Navigation arrows
+        navigation: {
+          nextEl: '.slider-main-block__arrow.swiper-button-next',
+          prevEl: '.slider-main-block__arrow.swiper-button-prev',
+        },
+        autoplay: {
+          delay: 3000,
+        },
       });
 
     
