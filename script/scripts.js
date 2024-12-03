@@ -29,6 +29,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // *************************************************************************************************
     // for telegram bot
     const optionValueTypeServicesArr = {};
+    const translations = {};
+
     // *************************************************************************************************
 
     const browserLanguage = navigator.language || navigator.userLanguage;
@@ -48,7 +50,10 @@ document.addEventListener("DOMContentLoaded", function () {
             const response = await fetch(`./languages/${lang}.json`);
             const responseUKR = await fetch(`./languages/uk.json`);
 
-            const translations = await response.json();
+            // const translations = await response.json();
+            Object.assign(translations, await response.json());
+            
+
             const translationsUKR = await responseUKR.json();
             
             document.querySelectorAll("[data-translate]").forEach(el => {
@@ -64,6 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const key = el.getAttribute("data-translate");
 
                 if (elValue != null) {
+
                     el.value = translations[key];
 
                     optionValueTypeServicesArr[key] = translationsUKR[key];
@@ -506,7 +512,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 const data = await response.json();
                 if (data.ok) {
+
+                    // let msgTelegramGoodVar = translations[teleramsent];
+
+                    // console.log(msgTelegramGoodVar);
                     console.log('The message has been successfully sent!');
+                    // alert(msgTelegramGoodVar);
                     alert('Thank you! Your message has been sent.');
 
                     // Автоматичне надсилання повідомлення на пошту за допомогою PHP(треба перевіряти), повідомлення не бачно
@@ -519,11 +530,20 @@ document.addEventListener("DOMContentLoaded", function () {
                     sendEmail2();
 
                 } else {
+
+                    // let msgTelegramErrVar = translations[errorTelegram];
+                    
+                    // console.error(msgTelegramErrVar, data);
                     console.error('Помилка Telegram:', data);
+                    // alert(msgTelegramErrVar);
                     alert('An error occurred while sending the message');
                 }
             } catch (error) {
+
+                // let msgReqErrVar = translations[reqErr];
+                // console.error(msgReqErrVar, error);
                 console.error('Помилка запиту:', error);
+                // alert(msgReqErrVar);
                 alert('An error occurred while sending the request.');
             }
         }
@@ -590,21 +610,32 @@ document.addEventListener("DOMContentLoaded", function () {
             window.location.href = mailtoLink;
 
     }
+
+    // для автоматичного надсилання данних з форми за допомогою сервісу emailjs
     
     function sendEmail2() {
 
+        // сайт: https://dashboard.emailjs.com/admin/account
+        // це Public Key з розділу account/general:API keys
         let emailjsID = "_ruQbUC348SMI_KYA";
 
+        // ініціалізація сервісу за допомогою Public Key (або ще його називають user_id)
         emailjs.init(emailjsID);
 
+        // тут я отриммав переклад деяких значень для формування об'єкту данних для відправки на пошту:
+        // знаходжу елемент select з id у формі
         let optionValueTypeServices = document.querySelector("#select_services");
 
+        // тут в елементі select отримаємо вибраний користувачем option за допомогою індекса вибраного (selectedIndex) , тобто ми взяли елемент select зі змінної optionValueTypeServices та за допомогою метода options звернулись до масиву усіх options, а в [] дужках за допомогою метода selectedIndex отримали цифру яка дорівнює індексу обраного елементу option
         const selectedOption = optionValueTypeServices.options[optionValueTypeServices.selectedIndex];
 
+        // тут ми отримаємо значення з атрибуту перекладу data-translate який є у елемента option отриманого вишче, це потрібно для формування перекладів в проекті
         const dataTranslate = selectedOption.getAttribute('data-translate');
  
+        // тут ми звертаємось до отриманого раніше об'єкту перекладів optionValueTypeServicesArr і з ньго отримаємо значення перекладу за ключем, отриманим за крок до цього: dataTranslate
         let optionValueTypeServicesUkr = optionValueTypeServicesArr[dataTranslate]; 
 
+        // тут ми отримаємо в змінні значення з елементів форми mainForm
         const name = mainForm.name.value;
         const phone = mainForm.phone.value;
         const email = mainForm.email.value;
@@ -613,9 +644,9 @@ document.addEventListener("DOMContentLoaded", function () {
         const select_services = optionValueTypeServicesUkr;
         const privacy = mainForm.privacy.checked ? 'Так' : 'Ні';
 
-        // Параметри для Email.js
+        // Параметри для Email.js, тут ми формуємо об'єкт, який надішлемо до пошти, вказаної при реєстрації на сервісі emailjs. тут головне: щоб назви ключей відповідали змінним у подвійних дужках {{}} в темплейті(шаблоні) в сервісі emailjs
         const templateParams = {
-            to_email: 'rumiyevskiy@gmail.com',
+            // to_email: 'rumiyevskiy@gmail.com',
             name: `${name} from site "Autoelektrikmeister" `,
             phone: phone,
             email: email,
@@ -625,20 +656,32 @@ document.addEventListener("DOMContentLoaded", function () {
             privacy: privacy,
         };
 
+        // сюда SERVICE_ID записується Service ID з вкладки Edit Service який ми отримали при додаванні сервіса, яким будемо користуватися при надсиланнях повідомлень в emailjs. я використовував gmail
         let SERVICE_ID = 'service_oeydswb';
+        // сюда TEMPLATE_ID записується Template ID з вкладки Email Templates, далі обираємо потрібний створений нами template (в безкоштовному варіанті їх тільки два), далі обираємо settings, там знаходимо Template ID
         let TEMPLATE_ID = 'template_2pd9prh';
 
         emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams)
             .then((response) => {
+
+                // let msgGoodVar = translations[Emailsent];
+                // console.log(msgGoodVar, response.status, response.text);
                 console.log('Email успішно відправлено!', response.status, response.text);
+
+                // alert(msgGoodVar);
                 alert('Ваше повідомлення успішно відправлено!');
             })
             .catch((error) => {
+
+                // let msgErrVar = translations[error];
+                // console.error(msgErrVar, error);
                 console.error('Помилка відправки:', error);
+                // alert(msgErrVar);
                 alert('Сталася помилка при відправці.');
             });
     }
     
+    // для надсилання данних з форми використовуючи PHP файл
         function sendEmailPHP() {
             const formData = new FormData(mainForm); // Отримуємо всі дані з форми
         
